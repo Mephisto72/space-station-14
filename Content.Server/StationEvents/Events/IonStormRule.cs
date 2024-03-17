@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Silicons.Laws;
 using Content.Server.Station.Components;
@@ -130,7 +131,8 @@ public sealed class IonStormRule : StationEventSystem<IonStormRuleComponent>
                 laws.Laws[i] = new SiliconLaw()
                 {
                     LawString = newLaw,
-                    Order = laws.Laws[i].Order
+                    Order = laws.Laws[i].Order,
+                    LawIdentifierOverride = laws.Laws[i].LawIdentifierOverride
                 };
             }
             else
@@ -141,6 +143,26 @@ public sealed class IonStormRule : StationEventSystem<IonStormRuleComponent>
                     Order = -1,
                     LawIdentifierOverride = Loc.GetString("ion-storm-law-scrambled-number", ("length", RobustRandom.Next(5, 10)))
                 });
+            }
+
+            // sets all unobfuscated
+            int orderDeduction = -1;
+
+            for (int i = 0; i < laws.Laws.Count; i++)
+            {
+                string notNullIdentifier = laws.Laws[i].LawIdentifierOverride ?? (i - orderDeduction).ToString();
+
+                if (laws.Laws[i].LawIdentifierOverride != null)
+                {
+                    if (notNullIdentifier.Any(char.IsNumber))
+                    {
+                        laws.Laws[i].LawIdentifierOverride = (i - orderDeduction).ToString();
+                    }
+                    else
+                    {
+                        orderDeduction += 1;
+                    }
+                }
             }
 
             _adminLogger.Add(LogType.Mind, LogImpact.High, $"{ToPrettyString(ent):silicon} had its laws changed by an ion storm to {laws.LoggingString()}");
