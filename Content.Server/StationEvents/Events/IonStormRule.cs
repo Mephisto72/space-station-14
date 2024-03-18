@@ -145,23 +145,21 @@ public sealed class IonStormRule : StationEventSystem<IonStormRuleComponent>
                 });
             }
 
-            // sets all unobfuscated
+            // sets all unobfuscated laws' indentifier in order from highest to lowest priority
+
             int orderDeduction = -1;
 
             for (int i = 0; i < laws.Laws.Count; i++)
             {
                 string notNullIdentifier = laws.Laws[i].LawIdentifierOverride ?? (i - orderDeduction).ToString();
 
-                if (laws.Laws[i].LawIdentifierOverride != null)
+                if (notNullIdentifier.Any(char.IsSymbol))
                 {
-                    if (notNullIdentifier.Any(char.IsNumber))
-                    {
-                        laws.Laws[i].LawIdentifierOverride = (i - orderDeduction).ToString();
-                    }
-                    else
-                    {
-                        orderDeduction += 1;
-                    }
+                    orderDeduction += 1;
+                }
+                else
+                {
+                    laws.Laws[i].LawIdentifierOverride = (i - orderDeduction).ToString();
                 }
             }
 
