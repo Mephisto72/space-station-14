@@ -1,0 +1,23 @@
+- type: entity
+  id: BaseLawModule
+  parent: BaseItem
+  name: law module
+  description: A module which can add or replace silicon laws.
+  abstract: true
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+  - type: GuideHelp
+    guides:
+      - Cyborgs
+
+- type: entity
+  id: LawModuleFreeform
+  parent: BaseLawModule
+  name: freeform module
+  components:
+  - type: Sprite
+    layers:
+    - state: mainboard
