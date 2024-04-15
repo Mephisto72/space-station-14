@@ -26,7 +26,7 @@ using Robust.Shared.Toolshed;
 namespace Content.Server.Silicons.Laws;
 
 /// <inheritdoc/>
-public sealed class SiliconLawSystem : SharedSiliconLawSystem
+public sealed partial class SiliconLawSystem : SharedSiliconLawSystem
 {
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
@@ -56,6 +56,8 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         SubscribeLocalEvent<EmagSiliconLawComponent, MindAddedMessage>(OnEmagMindAdded);
         SubscribeLocalEvent<EmagSiliconLawComponent, MindRemovedMessage>(OnEmagMindRemoved);
         SubscribeLocalEvent<EmagSiliconLawComponent, ExaminedEvent>(OnExamined);
+
+        InitializeLawModules();
     }
 
     private void OnComponentShutdown(EntityUid uid, SiliconLawBoundComponent component, ComponentShutdown args)

@@ -131,7 +131,8 @@ public sealed class IonStormRule : StationEventSystem<IonStormRuleComponent>
                 laws.Laws[i] = new SiliconLaw()
                 {
                     LawString = newLaw,
-                    Order = laws.Laws[i].Order
+                    Order = laws.Laws[i].Order,
+                    LawIdentifierOverride = laws.Laws[i].LawIdentifierOverride
                 };
             }
             else
@@ -144,7 +145,6 @@ public sealed class IonStormRule : StationEventSystem<IonStormRuleComponent>
                 });
             }
 
-            // sets all unobfuscated laws' indentifier in order from highest to lowest priority
             // This could technically override the Obfuscation from the code above, but it seems unlikely enough to basically never happen
             int orderDeduction = -1;
 
