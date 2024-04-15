@@ -145,8 +145,7 @@ public sealed class IonStormRule : StationEventSystem<IonStormRuleComponent>
                 });
             }
 
-            // sets all unobfuscated laws' indentifier in order from highest to lowest priority
-
+            // This could technically override the Obfuscation from the code above, but it seems unlikely enough to basically never happen
             int orderDeduction = -1;
 
             for (int i = 0; i < laws.Laws.Count; i++)
