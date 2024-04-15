@@ -5,5 +5,4 @@ namespace Content.Shared.Silicons.Laws.Components;
 
 public sealed partial class LawModuleComponent : Component
 {
-
 }

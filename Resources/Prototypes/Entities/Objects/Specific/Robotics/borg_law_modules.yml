@@ -5,6 +5,7 @@
   description: A module which can add or replace silicon laws.
   abstract: true
   components:
+  - type: SiliconLawModule
   - type: Item
     size: Small
   - type: Sprite
