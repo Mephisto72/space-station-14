@@ -5,4 +5,7 @@ namespace Content.Shared.Silicons.Laws.Components;
 
 public sealed partial class LawModuleComponent : Component
 {
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("currentLaw")]
+    public string CurrentLaw { get; set; } = string.Empty;
 }

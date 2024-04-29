@@ -2,6 +2,12 @@ using Robust.Shared.Serialization;
 
 namespace Content.Silicons.Laws.Modules
 {
+    [Serializable, NetSerializable]
+
+    public enum LawModuleUiKey
+    {
+        Key,
+    }
     public sealed class LawEditingBoundUserInterfaceState : BoundUserInterfaceState
     {
         public string CurrentLaw { get; }
