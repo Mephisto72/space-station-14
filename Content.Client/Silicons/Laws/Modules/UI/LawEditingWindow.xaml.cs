@@ -10,12 +10,25 @@ namespace Content.Client.Silicons.Laws.Modules.UI
 
         public event Action<string>? OnLawChanged;
 
+        private bool _focused;
+        private string _law = string.Empty;
+
         public LawEditingWindow()
         {
             RobustXamlLoader.Load(this);
 
-            LawLineEdit.OnTextEntered += e => OnLawChanged?.Invoke(e.Text);
-            LawLineEdit.OnFocusExit += e => OnLawChanged?.Invoke(e.Text);
+            LawLineEdit.OnTextEntered += e =>
+            {
+                _law = e.Text;
+                OnLawChanged?.Invoke(_law);
+            };
+
+            LawLineEdit.OnFocusEnter += _ => _focused = true;
+            LawLineEdit.OnFocusExit += _ =>
+            {
+                _focused = false;
+                LawLineEdit.Text = _law;
+            };
         }
 
         public void SetCurrentLaw(string law)

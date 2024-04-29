@@ -22,6 +22,5 @@ public sealed partial class SiliconLawSystem
     private void AddLaw(EntityUid uid, LawModuleComponent component, InteractEvent args)
     {
         Console.WriteLine("Test");
-        _userInterfaceSystem.TrySetUiState(uid, LawModuleUiKey.Key, new LawEditingBoundUserInterfaceState(component.CurrentLaw));
     }
 }

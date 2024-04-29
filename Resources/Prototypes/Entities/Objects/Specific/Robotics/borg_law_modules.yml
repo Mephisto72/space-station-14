@@ -13,6 +13,12 @@
   - type: GuideHelp
     guides:
       - Cyborgs
+  - type: ActivatableUI
+    key: enum.LawModuleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.LawModuleUiKey.Key:
+        type: LawEditingBoundUserInterface
 
 - type: entity
   id: LawModuleFreeform
