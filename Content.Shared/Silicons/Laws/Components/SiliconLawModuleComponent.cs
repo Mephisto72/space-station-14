@@ -10,8 +10,12 @@ public sealed partial class LawModuleComponent : Component
     public bool LawEditingEnabled;
 
     [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("Custom Priority")]
+    public bool PriorityEditingEnabled;
+
+    [ViewVariables(VVAccess.ReadWrite)]
     [DataField("Law Priority")]
-    public float? LawPriority { get; set; } = 0f;
+    public int? LawPriority { get; set; } = null;
 
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("Specific Lawset")]

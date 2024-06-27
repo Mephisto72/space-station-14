@@ -1,0 +1,14 @@
+- type: entity
+  name: test
+  parent: BaseItem
+  id: Test
+  components:
+  - type: Item
+    size: Tiny
+  - type: ActivatableUI
+    key: enum.TestUiKey.Key
+    requireHands: false
+  - type: UserInterface
+    interfaces:
+      enum.TestUiKey.Key:
+        type:
