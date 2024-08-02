@@ -1116,3 +1116,30 @@
     access: [["ResearchDirector"]]
   - type: Lock
     unlockOnClick: false
+
+- type: entity
+  parent: BaseComputer
+  id: ComputerAiLaw
+  name: ai law console
+  description: This console is used to upload, remove, and otherwise alter the laws of silicons aboard the station.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: teleport
+    - map: ["computerLayerKeys"]
+      state: rd_key
+  - type: AiLawConsole
+    LawModuleSlot:
+      name: ai-law-console-law-module
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Machines/terminal_insert_disc.ogg
+      ejectOnBreak: true
+      swap: true
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: Computer
