@@ -1246,6 +1246,12 @@
       state: generic_panel_open
   - type: ApcPowerReceiver
     powerLoad: 1000
+  - type: ActivatableUI
+    key: enum.LawUploadUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.LawUploadUiKey.Key:
+        type: LawUploadBoundUserInterface
   - type: Computer
     board: StationAiUploadCircuitboard
   - type: AccessReader
