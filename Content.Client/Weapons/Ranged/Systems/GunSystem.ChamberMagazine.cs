@@ -5,7 +5,6 @@ using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Client.GameObjects;
 using Robust.Shared.Containers;
-using Robust.Shared.Random;
 
 namespace Content.Client.Weapons.Ranged.Systems;
 
@@ -27,25 +26,15 @@ public sealed partial class GunSystem
         {
             return;
         }
-        
-        string baseLayer = "base";
-        
-        string boltOpen = "bolt-open";
-        
-        if (component.SelectedPrefix != null && component.SelectedPrefix != "")
-        {
-            baseLayer = "base_" + component.SelectedPrefix;
-            boltOpen = "bolt-open_" + component.SelectedPrefix;
-        }
 
         // Maybe re-using base layer for this will bite me someday but screw you future sloth.
         if (boltClosed)
         {
-            args.Sprite.LayerSetState(boltLayer, baseLayer);
+            args.Sprite.LayerSetState(boltLayer, "base");
         }
         else
         {
-            args.Sprite.LayerSetState(boltLayer, boltOpen);
+            args.Sprite.LayerSetState(boltLayer, "bolt-open");
         }
     }
 

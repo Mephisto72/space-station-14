@@ -1,14 +1,14 @@
 - type: entity
   id: BaseCartridgeCaselessRifle
   name: cartridge (.25 rifle)
-  parent: [ BaseCartridge, BaseSecurityContraband ]
+  parent: [ BaseCartridge, BaseRestrictedContraband ]
   abstract: true
   components:
   - type: Tag
     tags:
       - Cartridge
       - CartridgeCaselessRifle
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     deleteOnSpawn: true
   - type: Sprite
     noRot: false
@@ -26,16 +26,16 @@
   name: cartridge (.25 caseless)
   parent: BaseCartridgeCaselessRifle
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletCaselessRifleTrace
+  - type: CartridgeAmmo
+    proto: BulletCaselessRifle
 
 - type: entity
   id: CartridgeCaselessRiflePractice
   name: cartridge (.25 caseless practice)
   parent: BaseCartridgeCaselessRifle
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletCaselessRiflePracticeTrace
+  - type: CartridgeAmmo
+    proto: BulletCaselessRiflePractice
   - type: Sprite
     layers:
       - state: base

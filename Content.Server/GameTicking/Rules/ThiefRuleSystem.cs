@@ -1,4 +1,3 @@
-using Content.Shared.Hands.EntitySystems;
 using Content.Server.Antag;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Roles;
@@ -9,7 +8,6 @@ namespace Content.Server.GameTicking.Rules;
 public sealed class ThiefRuleSystem : GameRuleSystem<ThiefRuleComponent>
 {
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
 
     public override void Initialize()
     {
@@ -24,7 +22,6 @@ public sealed class ThiefRuleSystem : GameRuleSystem<ThiefRuleComponent>
     private void AfterAntagSelected(Entity<ThiefRuleComponent> mindId, ref AfterAntagEntitySelectedEvent args)
     {
         var ent = args.EntityUid;
-        
         _antag.SendBriefing(ent, MakeBriefing(ent), null, null);
     }
 
@@ -32,20 +29,9 @@ public sealed class ThiefRuleSystem : GameRuleSystem<ThiefRuleComponent>
     private void OnGetBriefing(Entity<ThiefRoleComponent> role, ref GetBriefingEvent args)
     {
         var ent = args.Mind.Comp.OwnedEntity;
-        
-        int hands = 0;
-        
-        if (ent == null)
+
+        if (ent is null)
             return;
-        
-        foreach (var hand in _hands.EnumerateHands(ent.Value))
-            hands += 1;
-            
-        if (hands == 0)
-            return;
-        
-        Logger.Warning($"Hands count: {hands}");
-            
         args.Append(MakeBriefing(ent.Value));
     }
 

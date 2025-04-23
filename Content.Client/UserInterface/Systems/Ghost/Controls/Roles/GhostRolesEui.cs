@@ -5,8 +5,6 @@ using Content.Shared.Eui;
 using Content.Shared.Ghost.Roles;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
-using Robust.Client.Player;
-using Robust.Shared.Utility;
 
 namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
 {
@@ -104,7 +102,6 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
                 var description = group.Key.Description;
                 var hasAccess = requirementsManager.CheckRoleRequirements(
                     group.Key.Requirements,
-                    IoCManager.Resolve<IPlayerManager>().LocalSession,
                     null,
                     out var reason);
 

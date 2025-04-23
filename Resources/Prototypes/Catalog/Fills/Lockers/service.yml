@@ -79,7 +79,6 @@
         amount: 2
       - id: Plunger
         amount: 2
-      - id: MoproachBox
 
 - type: entity
   id: ClosetLegalFilled
@@ -102,7 +101,7 @@
       - id: ClothingHandsGlovesLeather
       - id: ClothingOuterApronBotanist
       - id: ClothingHeadBandBotany
-      - id: ChemistryBottleRobustHarvest
+      - id: RobustHarvestChemistryBottle
         prob: 0.3
       - id: ClothingBeltPlant
       - id: PlantBag ##Some maps don't have nutrivend
@@ -134,7 +133,6 @@
   id: ClosetJanitorBombFilled
   parent: ClosetJanitorBomb
   suffix: DO NOT MAP, Filled
-  categories: [ DoNotMap ]
   components:
   - type: StorageFill
     contents:

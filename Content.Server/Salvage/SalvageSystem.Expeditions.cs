@@ -4,7 +4,6 @@ using Content.Server.Salvage.Expeditions;
 using Content.Server.Salvage.Expeditions.Structure;
 using Content.Shared.CCVar;
 using Content.Shared.Examine;
-using Content.Shared.Procedural;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Salvage.Expeditions;
 using Robust.Shared.Audio;
@@ -21,7 +20,7 @@ public sealed partial class SalvageSystem
      * Handles setup / teardown of salvage expeditions.
      */
 
-    private const int MissionLimit = 6;// 🌟Starlight🌟
+    private const int MissionLimit = 3;
 
     private readonly JobQueue _salvageQueue = new();
     private readonly List<(SpawnSalvageMissionJob Job, CancellationTokenSource CancelToken)> _salvageJobs = new();
@@ -70,7 +69,8 @@ public sealed partial class SalvageSystem
 
     private void OnExpeditionMapInit(EntityUid uid, SalvageExpeditionComponent component, MapInitEvent args)
     {
-        component.SelectedSong = _audio.ResolveSound(component.Sound);
+        var selectedFile = _audio.GetSound(component.Sound);
+        component.SelectedSong = new SoundPathSpecifier(selectedFile, component.Sound.Params);
     }
 
     private void OnExpeditionShutdown(EntityUid uid, SalvageExpeditionComponent component, ComponentShutdown args)
@@ -138,7 +138,6 @@ public sealed partial class SalvageSystem
     private void GenerateMissions(SalvageExpeditionDataComponent component)
     {
         component.Missions.Clear();
-        var difficulties = _prototypeManager.GetInstances<SalvageDifficultyPrototype>();
 
         for (var i = 0; i < MissionLimit; i++)
         {
@@ -146,7 +145,7 @@ public sealed partial class SalvageSystem
             {
                 Index = component.NextIndex,
                 Seed = _random.Next(),
-                Difficulty = difficulties.Values[_random.Next(difficulties.Count)].ID,
+                Difficulty = "Moderate",
             };
 
             component.Missions[component.NextIndex++] = mission;

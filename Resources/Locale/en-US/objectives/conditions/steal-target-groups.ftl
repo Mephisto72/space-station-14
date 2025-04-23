@@ -1,5 +1,4 @@
 # Traitor single items
-steal-target-groups-supermatter-sliver = supermatter sliver
 steal-target-groups-hypospray = hypospray
 steal-target-groups-handheld-crew-monitor = handheld crew monitor
 steal-target-groups-clothing-outer-hardsuit-rd = experimental research hardsuit
@@ -21,7 +20,6 @@ steal-target-groups-stamps = stamp
 steal-target-groups-door-remotes = door remote
 steal-target-groups-encryption-keys = encryption key
 steal-target-groups-technology-disks = technology disk
-steal-target-groups-mail = mail
 steal-target-groups-id-cards = ID Card
 steal-target-groups-lamps = LAMP
 

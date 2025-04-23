@@ -1,7 +1,6 @@
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.DeviceLinking;
 using Content.Shared.Item;
-using Content.Shared.Kitchen.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -14,9 +13,6 @@ namespace Content.Server.Kitchen.Components
     {
         [DataField("cookTimeMultiplier"), ViewVariables(VVAccess.ReadWrite)]
         public float CookTimeMultiplier = 1;
-        
-        [DataField("deviceType")]
-        public CookingDeviceType DeviceType = CookingDeviceType.Microwave;
 
         [DataField("baseHeatMultiplier"), ViewVariables(VVAccess.ReadWrite)]
         public float BaseHeatMultiplier = 100;

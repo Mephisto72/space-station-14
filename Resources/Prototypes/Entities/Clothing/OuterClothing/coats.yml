@@ -63,8 +63,6 @@
   parent: AllowSuitStorageClothing
   id: ClothingOuterArmorHoS
   components:
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -81,8 +79,6 @@
   parent: AllowSuitStorageClothing
   id: ClothingOuterArmorWarden
   components:
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -130,8 +126,6 @@
   - type: TemperatureProtection
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -156,8 +150,6 @@
     sprite: Clothing/OuterClothing/Coats/labcoat.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat.rsi
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -178,8 +170,6 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_chem.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_chem.rsi
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -200,8 +190,6 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_viro.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_viro.rsi
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -222,8 +210,6 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_gene.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_gene.rsi
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -244,8 +230,6 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_cmo.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_cmo.rsi
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -268,8 +252,6 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_sci.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_sci.rsi
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -290,8 +272,6 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_robo.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_robo.rsi
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -312,8 +292,6 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_rd.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_rd.rsi
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -337,7 +315,7 @@
     sprite: Clothing/OuterClothing/Coats/pirate.rsi
 
 - type: entity
-  parent: [ClothingOuterArmorWarden, ClothingOuterStorageBase, BaseSecurityContraband]
+  parent: [ClothingOuterArmorWarden, ClothingOuterStorageBase, BaseRestrictedContraband]
   id: ClothingOuterCoatWarden
   name: warden's armored jacket
   description: A sturdy, utilitarian jacket designed to protect a warden from any brig-bound threats.
@@ -379,8 +357,6 @@
     sprite: Clothing/OuterClothing/Coats/dogi.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/dogi.rsi
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -422,7 +398,7 @@
     sprite: Clothing/OuterClothing/Coats/syndicate/coatsyndiecaparmored.rsi
 
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
+  parent: ClothingOuterStorageBase
   id: ClothingOuterCoatAMG
   name: armored medical gown
   description: The version of the medical gown, with elements of a bulletproof vest, looks strange, but your heart is protected.
@@ -431,8 +407,6 @@
     sprite: Clothing/OuterClothing/Coats/brigmedic.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/brigmedic.rsi
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -443,7 +417,7 @@
         Caustic: 0.75
 
 - type: entity
-  parent: ClothingOuterStorageFoldableBase
+  parent: ClothingOuterStorageBase
   id: ClothingOuterCoatLabSeniorResearcher
   name: senior researcher lab coat
   description: A suit that protects against minor chemical spills. Has a purple collar and wrist trims.
@@ -452,20 +426,13 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_senior_researcher.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_senior_researcher.rsi
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
         Caustic: 0.75
 
 - type: entity
-  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSeniorResearcher]
-  id: ClothingOuterCoatLabSeniorResearcherOpened
-  name: senior researcher lab coat
-
-- type: entity
-  parent: ClothingOuterStorageFoldableBase
+  parent: ClothingOuterStorageBase
   id: ClothingOuterCoatLabSeniorPhysician
   name: senior physician lab coat
   description: A suit that protects against minor chemical spills. Has light blue sleeves and an orange waist trim.
@@ -474,17 +441,10 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_senior_physician.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_senior_physician.rsi
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
         Caustic: 0.75
-
-- type: entity
-  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSeniorPhysician]
-  id: ClothingOuterCoatLabSeniorPhysicianOpened
-  name: senior physician lab coat
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -498,7 +458,7 @@
     sprite: Clothing/OuterClothing/Coats/space_asshole.rsi
 
 - type: entity
-  parent: ClothingOuterStorageFoldableBase
+  parent: ClothingOuterStorageBase
   id: ClothingOuterCoatExpensive
   name: expensive coat
   description: Very fluffy pink coat, made out of very expensive fur (clearly).
@@ -507,8 +467,3 @@
     sprite: Clothing/OuterClothing/Coats/expensive_coat.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/expensive_coat.rsi
-
-- type: entity
-  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatExpensive]
-  id: ClothingOuterCoatExpensiveOpened
-  name: expensive coat

@@ -271,7 +271,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
                 gridRelativePos = gridRelativePos with { Y = -gridRelativePos.Y };
                 var gridUiPos = ScalePosition(gridRelativePos);
 
-                var range = _shuttles.GetFTLRange(_shuttleEntity.Value);
+                var range = _shuttles.GetFTLRange(gridUid);
                 range *= MinimapScale;
                 handle.DrawCircle(gridUiPos, range, Color.Gold, filled: false);
             }

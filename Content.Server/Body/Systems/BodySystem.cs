@@ -1,4 +1,3 @@
-﻿using Content.Server._Starlight.Medical.Limbs;
 using Content.Server.Body.Components;
 using Content.Server.Ghost;
 using Content.Server.Humanoid;
@@ -23,7 +22,6 @@ public sealed class BodySystem : SharedBodySystem
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidSystem = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
-    [Dependency] private readonly LimbSystem _limbSystem = default!;//🌟Starlight🌟
 
     public override void Initialize()
     {
@@ -67,15 +65,16 @@ public sealed class BodySystem : SharedBodySystem
         // TODO: Predict this probably.
         base.AddPart(bodyEnt, partEnt, slotId);
 
-        var layer = partEnt.Comp.ToHumanoidLayers();
-        if (layer != null)
-        {
-            var layers = HumanoidVisualLayersExtension.Sublayers(layer.Value);
-            _humanoidSystem.SetLayersVisibility(bodyEnt.Owner, layers, visible: true);
-        }
-        
         if (TryComp<HumanoidAppearanceComponent>(bodyEnt, out var humanoid))
-            _limbSystem.AddLimbVisual((bodyEnt, humanoid), partEnt); //🌟Starlight🌟
+        {
+            var layer = partEnt.Comp.ToHumanoidLayers();
+            if (layer != null)
+            {
+                var layers = HumanoidVisualLayersExtension.Sublayers(layer.Value);
+                _humanoidSystem.SetLayersVisibility(
+                    bodyEnt, layers, visible: true, permanent: true, humanoid);
+            }
+        }
     }
 
     protected override void RemovePart(
@@ -94,7 +93,8 @@ public sealed class BodySystem : SharedBodySystem
             return;
 
         var layers = HumanoidVisualLayersExtension.Sublayers(layer.Value);
-        _humanoidSystem.SetLayersVisibility((bodyEnt, humanoid), layers, visible: false);
+        _humanoidSystem.SetLayersVisibility(
+            bodyEnt, layers, visible: false, permanent: true, humanoid);
     }
 
     public override HashSet<EntityUid> GibBody(

@@ -103,6 +103,8 @@ entities:
     - type: Broadphase
     - type: OccluderTree
     - type: LoadedMap
+    - type: Parallax
+      parallax: AspidParallax
   - uid: 2
     components:
     - type: MetaData
@@ -65382,7 +65384,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -25.5,99.5
       parent: 2
-- proto: CartridgePistolSP
+- proto: CartridgePistol
   entities:
   - uid: 695
     components:
@@ -140850,7 +140852,7 @@ entities:
     - type: Transform
       pos: 51.36094,56.594063
       parent: 2
-- proto: MagazineLightRifleSP
+- proto: MagazineLightRifle
   entities:
   - uid: 8376
     components:
@@ -162929,7 +162931,7 @@ entities:
     - type: Transform
       pos: -2.5,170.5
       parent: 2
-- proto: SpawnPointAssistant
+- proto: SpawnPointPassenger
   entities:
   - uid: 14092
     components:
@@ -163221,7 +163223,7 @@ entities:
     - type: Transform
       pos: -32.5,7.5
       parent: 2
-- proto: SpeedLoaderMagnumSP
+- proto: SpeedLoaderMagnum
   entities:
   - uid: 3542
     components:
@@ -171227,7 +171229,7 @@ entities:
     - type: Transform
       pos: -2.4269748,172.69862
       parent: 2
-- proto: ToyFigurineAssistant
+- proto: ToyFigurinePassenger
   entities:
   - uid: 32432
     components:

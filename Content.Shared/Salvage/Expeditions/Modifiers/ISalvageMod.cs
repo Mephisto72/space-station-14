@@ -11,6 +11,4 @@ public interface ISalvageMod
     /// Cost for difficulty modifiers.
     /// </summary>
     float Cost { get; }
-
-    List<string>? Difficulties { get; }
 }

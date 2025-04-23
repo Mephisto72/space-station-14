@@ -38,6 +38,7 @@
       - PosterContrabandSyndicateRecruitment
       - PosterContrabandClown
       - PosterContrabandSmoke
+      - PosterContrabandGreyTide
       - PosterContrabandMissingGloves
       - PosterContrabandHackingGuide
       - PosterContrabandRIPBadger
@@ -91,7 +92,6 @@
       - PosterContrabandInterdyne
       - PosterContrabandWaffleCorp
       - PosterContrabandMissingSpacepen
-      - PosterContrabandYoutoolpia
     chance: 1
 
 - type: entity
@@ -157,8 +157,4 @@
       - PosterLegitSafetyMothHardhat
       - PosterLegitSafetyMothSSD
       - PosterLegitOppenhopper
-      - PosterLegitCalendar
-      - PosterLegitCleanHands
-      - PosterLegitEyeChart
-      - PosterLegitTyrone
     chance: 1

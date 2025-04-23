@@ -2,7 +2,7 @@
 - type: entity
   id: BaseMagazineLightRifle
   name: "magazine (.30 rifle)"
-  parent: [ BaseItem, BaseSecurityContraband ]
+  parent: [ BaseItem, BaseRestrictedContraband ]
   abstract: true
   components:
   - type: Tag
@@ -13,7 +13,7 @@
     whitelist:
       tags:
         - CartridgeLightRifle
-    proto: CartridgeLightRifleSP
+    proto: CartridgeLightRifle
     capacity: 30
   - type: Item
     size: Small
@@ -35,15 +35,15 @@
 
 # Magazines
 - type: entity
-  id: MagazineLightRifleBoxSP
-  name: "L6 SAW magazine box (.30 rifle SP)"
+  id: MagazineLightRifleBox
+  name: "L6 SAW magazine box (.30 rifle)"
   parent: BaseMagazineLightRifle
   components:
   - type: Tag
     tags:
       - MagazineLightRifleBox
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleSP
+    proto: CartridgeLightRifle
     capacity: 100
   - type: Item
   - type: Sprite
@@ -54,44 +54,13 @@
     zeroVisible: false
   - type: Appearance
 
-
 - type: entity
-  id: MagazineLightRifleEmpty
-  name: "magazine (.30 rifle any)"
-  suffix: empty
-  parent: MagazineLightRifleSP
-  components:
-  - type: BallisticAmmoProvider
-    proto: null
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: MagazineLightRifleSP
-  name: "magazine (.30 rifle SP)"
+  id: MagazineLightRifle
+  name: "magazine (.30 rifle)"
   parent: BaseMagazineLightRifle
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleSP
-  - type: Sprite
-    layers:
-    - state: sp
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-
-- type: entity
-  id: MagazineLightRifleHP
-  name: "magazine (.30 rifle HP)"
-  parent: BaseMagazineLightRifle
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleHP
+    proto: CartridgeLightRifle
   - type: Sprite
     layers:
     - state: red
@@ -99,34 +68,18 @@
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
-
 - type: entity
-  id: MagazineLightRifleFMJ
-  name: "magazine (.30 rifle FMJ)"
-  parent: BaseMagazineLightRifle
+  id: MagazineLightRifleEmpty
+  name: "magazine (.30 rifle any)"
+  suffix: empty
+  parent: MagazineLightRifle
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleFMJ
+    proto: null
   - type: Sprite
     layers:
-    - state: fmj
+    - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: MagazineLightRifleAP
-  name: "magazine (.30 rifle AP)"
-  parent: BaseMagazineLightRifle
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleAP
-  - type: Sprite
-    layers:
-    - state: ap
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
   id: MagazineLightRiflePractice
@@ -159,16 +112,10 @@
 - type: entity
   id: MagazineLightRifleIncendiary
   name: "magazine (.30 rifle incendiary)"
-  parent: BaseMagazineLightRifle
+  parent: MagazineLightRifle
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeLightRifleIncendiary
-  - type: Sprite
-    layers:
-    - state: incendiary
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
   id: MagazineLightRifleMaxim
@@ -179,7 +126,7 @@
     tags:
       - MagazineLightRiflePan
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleSP
+    proto: CartridgeLightRifle
     capacity: 96
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/maxim.rsi
@@ -193,12 +140,12 @@
     tags:
       - MagazineLightRifleBox
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleSP
+    proto: CartridgeLightRifle
     capacity: 80
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/pk_box.rsi
   - type: MagazineVisuals
     magState: mag
-    steps: 8
+    steps: 7
     zeroVisible: false
   - type: Appearance

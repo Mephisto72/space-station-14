@@ -133,13 +133,8 @@
   - fuck
   - replay_recording_start
   - replay_recording_stop
-  
-- Flags: QUERY
-  Commands:
-  - tippy
-  - tip
 
-- Flags: DANGER
+- Flags: QUERY
   Commands:
   - uploadfile
   - loadprototype

@@ -11,8 +11,8 @@
     outerClothing: ClothingOuterCoatGentle
     gloves: ClothingHandsGlovesFingerless
     shoes: ClothingShoesBootsJack
-    id: AssistantPDA
-    ears: ClothingHeadsetAssistant
+    id: PassengerPDA
+    ears: ClothingHeadsetGrey
   storage:
     back:
     - BoxSurvival
@@ -88,7 +88,7 @@
     back:
     - BoxSurvivalSecurity
     - Flash
-    - MagazinePistolSP
+    - MagazinePistol
 
 - type: startingGear
   id: BoxingKangarooGear
@@ -110,10 +110,27 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorWhite
     shoes: ClothingShoesBootsJack
-    ears: ClothingHeadsetAssistant
+    ears: ClothingHeadsetGrey
     gloves: ClothingHandsGlovesFingerless
   inhand:
     - WeaponMeleeToolboxRobust
+
+#Brigmedic
+
+- type: startingGear
+  id: BrigmedicGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBrigmedic
+    outerClothing: ClothingOuterCoatAMG
+    back: ClothingBackpackBrigmedic
+    shoes: ClothingShoesColorRed
+    gloves: ClothingHandsGlovesNitrile
+    eyes: ClothingEyesHudMedical
+    head: ClothingHeadHatBeretBrigmedic
+    id: BrigmedicPDA
+    ears: ClothingHeadsetBrigmedic
+    mask: ClothingMaskBreathMedicalSecurity
+    belt: ClothingBeltMedicalFilled
 
 # Aghost
 - type: startingGear
@@ -159,9 +176,9 @@
     pocket1: BikeHorn
     pocket2: ClownRecorder
 
-# Assistant but without the ID, bag, or headset
+# Passenger but without the ID, bag, or headset
 - type: startingGear
-  id: LimitedAssistantGear
+  id: LimitedPassengerGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorGrey
     shoes: ClothingShoesColorBlack

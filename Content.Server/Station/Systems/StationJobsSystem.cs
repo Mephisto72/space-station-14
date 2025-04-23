@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.GameTicking;
 using Content.Server.Station.Components;
-using Content.Shared.Starlight.NewLife;
 using Content.Shared.CCVar;
 using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking;
@@ -37,8 +36,6 @@ public sealed partial class StationJobsSystem : EntitySystem
         SubscribeLocalEvent<StationJobsComponent, StationRenamedEvent>(OnStationRenamed);
         SubscribeLocalEvent<StationJobsComponent, ComponentShutdown>(OnStationDeletion);
         SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerJoinedLobby);
-        SubscribeLocalEvent<NewLifeOpenedEvent>(OnPlayerNewLifeOpen); //  🌟Starlight🌟
-        SubscribeLocalEvent<PlayerConnectEvent>(OnPlayerConnect); //  🌟Starlight🌟
         Subs.CVar(_configurationManager, CCVars.GameDisallowLateJoins, _ => UpdateJobsAvailable(), true);
     }
 
@@ -490,8 +487,8 @@ public sealed partial class StationJobsSystem : EntitySystem
     private TickerJobsAvailableEvent GenerateJobsAvailableEvent()
     {
         // If late join is disallowed, return no available jobs.
-        //if (_gameTicker.DisallowLateJoin)  🌟Starlight🌟
-        //    return new TickerJobsAvailableEvent(new(), new());
+        if (_gameTicker.DisallowLateJoin)
+            return new TickerJobsAvailableEvent(new(), new());
 
         var jobs = new Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>>();
         var stationNames = new Dictionary<NetEntity, string>();
@@ -517,16 +514,6 @@ public sealed partial class StationJobsSystem : EntitySystem
     }
 
     private void OnPlayerJoinedLobby(PlayerJoinedLobbyEvent ev)
-    {
-        RaiseNetworkEvent(_cachedAvailableJobs, ev.PlayerSession.Channel);
-    }
-    //  🌟Starlight🌟
-    private void OnPlayerNewLifeOpen(NewLifeOpenedEvent ev, EntitySessionEventArgs args)
-    {
-        RaiseNetworkEvent(_cachedAvailableJobs, args.SenderSession.Channel);
-    }
-    //  🌟Starlight🌟
-    private void OnPlayerConnect(PlayerConnectEvent ev)
     {
         RaiseNetworkEvent(_cachedAvailableJobs, ev.PlayerSession.Channel);
     }

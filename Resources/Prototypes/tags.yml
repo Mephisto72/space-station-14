@@ -1,4 +1,5 @@
 # PUT YOUR TAGS IN ALPHABETICAL ORDER
+
 - type: Tag
   id: AccessBreakerImmune
 
@@ -13,18 +14,6 @@
 
 - type: Tag
   id: AirSensor
-
-- type: Tag
-  id: Abductor
-
-- type: Tag
-  id: AbductorScientist
-
-- type: Tag
-  id: AllowBiomeLoading # Entities with this tag will load terrain, even if a ghost.
-
-- type: Tag
-  id: AllowGhostShownByEvent
 
 - type: Tag
   id: Ambrosia
@@ -73,9 +62,6 @@
 
 - type: Tag
   id: BikeHorn
-
-- type: Tag
-  id: BloodSplatter
 
 - type: Tag
   id: Bloodpack
@@ -127,9 +113,6 @@
 
 - type: Tag
   id: BorgModuleMedical
-
-- type: Tag
-  id: BorgModuleScience
 
 - type: Tag
   id: BorgModuleService
@@ -234,6 +217,36 @@
   id: Carpet
 
 - type: Tag
+  id: CarpetBlack
+
+- type: Tag
+  id: CarpetBlue
+
+- type: Tag
+  id: CarpetCyan
+
+- type: Tag
+  id: CarpetGreen
+
+- type: Tag
+  id: CarpetOrange
+
+- type: Tag
+  id: CarpetPink
+
+- type: Tag
+  id: CarpetPurple
+
+- type: Tag
+  id: CarpetRed
+
+- type: Tag
+  id: CarpetSBlue
+
+- type: Tag
+  id: CarpetWhite
+
+- type: Tag
   id: Carrot
 
 - type: Tag
@@ -308,24 +321,6 @@
   id: CigPack
 
 - type: Tag
-  id: ClarkeCentralControlModule
-
-- type: Tag
-  id: ClarkePeripheralsControlModule
-
-- type: Tag
-  id: ClarkeHead
-
-- type: Tag
-  id: ClarkeLArm
-
-- type: Tag
-  id: ClarkeRArm
-
-- type: Tag
-  id: ClarkeTreads
-
-- type: Tag
   id: Cleaver
 
 - type: Tag
@@ -356,9 +351,6 @@
   id: CluwneHorn
 
 - type: Tag
-  id: CluwneBeastWearable
-  
-- type: Tag
   id: Cola
 
 - type: Tag
@@ -375,9 +367,6 @@
 
 - type: Tag
   id: CoordinatesDisk
-
-- type: Tag
-  id: CorgiWearable
 
 - type: Tag #Ohioans die happy
   id: Corn
@@ -428,9 +417,6 @@
   id: Cryobeaker
 
 - type: Tag
-  id: CrystalBlack
-
-- type: Tag
   id: CrystalBlue
 
 - type: Tag
@@ -447,9 +433,6 @@
 
 - type: Tag
   id: CrystalRed
-
-- type: Tag
-  id: CrystalYellow
 
 - type: Tag
   id: CubanCarp
@@ -519,33 +502,6 @@
 
 - type: Tag
   id: Duck
-
-- type: Tag
-  id: DurandArmor
-
-- type: Tag
-  id: DurandCentralControlModule
-
-- type: Tag
-  id: DurandPeripheralsControlModule
-
-- type: Tag
-  id: DurandTargetingControlModule
-
-- type: Tag
-  id: DurandHead
-
-- type: Tag
-  id: DurandLArm
-
-- type: Tag
-  id: DurandLLeg
-
-- type: Tag
-  id: DurandRArm
-
-- type: Tag
-  id: DurandRLeg
 
 - type: Tag
   id: Ectoplasm
@@ -663,33 +619,6 @@
 
 - type: Tag
   id: GrenadeFlashBang
-  
-- type: Tag
-  id: GygaxArmor
-
-- type: Tag
-  id: GygaxCentralControlModule
-
-- type: Tag
-  id: GygaxPeripheralsControlModule
-
-- type: Tag
-  id: GygaxTargetingControlModule
-
-- type: Tag
-  id: GygaxHead
-
-- type: Tag
-  id: GygaxLArm
-
-- type: Tag
-  id: GygaxLLeg
-
-- type: Tag
-  id: GygaxRArm
-
-- type: Tag
-  id: GygaxRLeg
 
 - type: Tag
   id: HudMedical
@@ -821,12 +750,6 @@
   id: IntercomElectronics
 
 - type: Tag
-  id: InvalidForGlobalSpawnSpell
-
-- type: Tag
-  id: InvalidForSurvivorAntag
-
-- type: Tag
   id: JawsOfLife
 
 - type: Tag
@@ -898,7 +821,7 @@
   id: MagazinePistolCaselessRifle
 
 - type: Tag
-  id: MagazinePistolHighCapacitySP
+  id: MagazinePistolHighCapacity
 
 - type: Tag
   id: MagazinePistolSubMachineGunTopMounted
@@ -913,7 +836,7 @@
   id: MagazineMagnumSubMachineGun
 
 - type: Tag
-  id: MagazinePistolSubMachineGunSP
+  id: MagazinePistolSubMachineGun
 
 - type: Tag
   id: MagazineGrenade
@@ -934,12 +857,6 @@
 
 - type: Tag
   id: Meat
-
-- type: Tag
-  id: MechAirTank
-
-- type: Tag
-  id: MechThruster
 
 - type: Tag
   id: Medal
@@ -1023,9 +940,6 @@
   id: Packet
 
 - type: Tag
-  id: ParadoxCloneObjectiveBlacklist # objective entities with this tag don't get copied to paradox clones
-
-- type: Tag
   id: Paper
 
 - type: Tag
@@ -1092,9 +1006,6 @@
   id: PlushieGhost
 
 - type: Tag
-  id: PlushieLizard
-
-- type: Tag
   id: PlushieSharkBlue
 
 - type: Tag
@@ -1120,9 +1031,6 @@
 
 - type: Tag
   id: Powerdrill
-
-- type: Tag
-  id: PreventAccessLogging
 
 - type: Tag
   id: PrisonUniform
@@ -1168,9 +1076,6 @@
   id: RipleyLLeg
 
 - type: Tag
-  id: RipleyMKIIUpgradeKit
-
-- type: Tag
   id: RipleyRArm
 
 - type: Tag
@@ -1199,9 +1104,6 @@
 
 - type: Tag
   id: SecBeltEquip
-
-- type: Tag
-  id: BrigmedicBeltEquip
 
 - type: Tag
   id: SecurePlasmaWindoor
@@ -1240,9 +1142,6 @@
   id: SignalTrigger
 
 - type: Tag
-  id: SilentStorageUser # used in SharedStorageSystem, so the entity will do all silently
-
-- type: Tag
   id: SkeletonMotorcycleKeys
 
 - type: Tag
@@ -1256,19 +1155,6 @@
 
 - type: Tag
   id: SmallMech
-
-- type: Tag
-  id: IndustrialMech
-  
-- type: Tag
-  id: IgnoreMelee
-
-- type: Tag
-  id: CombatMech
-# TODO: Make medical mech
-
-- type: Tag
-  id: SpecialMech
 
 - type: Tag
   id: Smokable
@@ -1406,12 +1292,6 @@
   id: Truncheon
 
 - type: Tag
-  id: TurretCompatibleWeapon # Used in the construction of sentry turrets
-
-- type: Tag
-  id: TurretControlElectronics # Used in the construction of sentry turret control panels
-
-- type: Tag
   id: Unimplantable
 
 - type: Tag
@@ -1428,9 +1308,6 @@
 
 - type: Tag
   id: VimPilot
-
-- type: Tag
-  id: Vial
 
 - type: Tag
   id: VoiceTrigger

@@ -13,8 +13,6 @@
     coolingCoefficient: 0.1
   - type: Item
     size: Normal
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -232,8 +230,6 @@
     clothingVisuals:
       outerClothing:
       - state: CHEM-equipped-OUTERCLOTHING
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -264,8 +260,6 @@
     clothingVisuals:
       outerClothing:
       - state: CMO-equipped-OUTERCLOTHING
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -329,8 +323,6 @@
     clothingVisuals:
       outerClothing:
       - state: GENE-equipped-OUTERCLOTHING
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -447,8 +439,6 @@
     clothingVisuals:
       outerClothing:
       - state: JANI-equipped-OUTERCLOTHING
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -479,8 +469,6 @@
     clothingVisuals:
       outerClothing:
       - state: MED-equipped-OUTERCLOTHING
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -557,8 +545,6 @@
     clothingVisuals:
       outerClothing:
       - state: PARA-equipped-OUTERCLOTHING
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -613,8 +599,6 @@
     clothingVisuals:
       outerClothing:
       - state: RD-equipped-OUTERCLOTHING
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -669,8 +653,6 @@
     clothingVisuals:
       outerClothing:
       - state: SCI-equipped-OUTERCLOTHING
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -682,7 +664,7 @@
     clothingPrototype: ClothingHeadHatHoodWinterSci
 
 - type: entity
-  parent: [ClothingOuterWinterCoatToggleable, BaseSecurityContraband]
+  parent: [ClothingOuterWinterCoatToggleable, BaseRestrictedContraband]
   id: ClothingOuterWinterSec
   name: security winter coat
   components:
@@ -724,8 +706,6 @@
     clothingVisuals:
       outerClothing:
       - state: VIRO-equipped-OUTERCLOTHING
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -738,7 +718,7 @@
 
 ################################################################
 - type: entity
-  parent: [ClothingOuterArmorWarden, ClothingOuterWinterCoatToggleable, BaseSecurityContraband]
+  parent: [ClothingOuterArmorWarden, ClothingOuterWinterCoatToggleable, BaseRestrictedContraband]
   id: ClothingOuterWinterWarden
   name: warden's armored winter coat
   description: A sturdy, utilitarian winter coat designed to protect a warden from any brig-bound threats and hypothermic events.
@@ -752,7 +732,7 @@
 ################################################################
 
 - type: entity
-  parent: [ClothingOuterWinterCoatToggleable, BaseSecurityContraband]
+  parent: [ClothingOuterWinterCoatToggleable, BaseRestrictedContraband]
   id: ClothingOuterWinterWardenUnarmored
   name: warden's winter coat
   description: A sturdy coat, a warm coat, but not an armored coat.

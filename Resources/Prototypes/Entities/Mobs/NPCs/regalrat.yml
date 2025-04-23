@@ -4,8 +4,6 @@
   parent: [ SimpleMobBase, MobCombat ]
   description: He's da rat. He make da roolz.
   components:
-  - type: ThermalVision
-  - type: VentCrawler
   - type: CombatMode
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.00
@@ -117,9 +115,8 @@
     price: 2500 # rat wealth
   - type: RandomMetadata
     nameSegments:
-    - NamesRegalratKingdom
-    - NamesRegalratTitle
-    nameFormat: name-format-regal-rat
+    - RegalRatNameKingdom
+    - RegalRatNameTitle
   - type: GuideHelp
     guides:
     - MinorAntagonists
@@ -172,7 +169,6 @@
   description: He's da mini rat. He don't make da roolz.
   categories: [ HideSpawnMenu ] #Must be configured to a King or the AI breaks.
   components:
-  - type: VentCrawler
   - type: CombatMode
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.5

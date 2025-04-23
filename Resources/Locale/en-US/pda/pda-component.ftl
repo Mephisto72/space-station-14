@@ -32,9 +32,7 @@ comp-pda-ui-station-alert-level = Alert Level: [color={ $color }]{ $level }[/col
 
 comp-pda-ui-station-alert-level-instructions = Instructions: [color=white]{ $instructions }[/color]
 
-comp-pda-ui-start-time = Shift duration: [color=white]{ $time }[/color]
-
-comp-pda-ui-station-time = Date and Time: [color=white]{ $time }, { $date }[/color]
+comp-pda-ui-station-time = Shift duration: [color=white]{ $time }[/color]
 
 comp-pda-ui-eject-id-button = Eject ID
 
@@ -56,7 +54,3 @@ comp-pda-ui-unassigned = Unassigned
 
 pda-notification-message = [font size=12][bold]PDA[/bold] { $header }: [/font]
     "{ $message }"
-    
-comp-pda-ui-shuttle-launch-time = Before the shuttle launch: [color=white]{ $time }[/color]
-comp-pda-ui-shuttle-arrival-time = Until the shuttle arrives: [color=white]{ $time }[/color]
-comp-pda-ui-shuttle-call-time = Before the crew change: [color=white]{ $time }[/color]

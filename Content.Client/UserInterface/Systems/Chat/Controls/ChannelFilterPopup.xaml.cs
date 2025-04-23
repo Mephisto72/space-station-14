@@ -16,7 +16,6 @@ public sealed partial class ChannelFilterPopup : Popup
         ChatChannel.Whisper,
         ChatChannel.Emotes,
         ChatChannel.Radio,
-        ChatChannel.CollectiveMind,
         ChatChannel.Notifications,
         ChatChannel.LOOC,
         ChatChannel.OOC,
@@ -24,8 +23,7 @@ public sealed partial class ChannelFilterPopup : Popup
         ChatChannel.Admin,
         ChatChannel.AdminAlert,
         ChatChannel.AdminChat,
-        ChatChannel.Server,
-        ChatChannel.CollectiveMind
+        ChatChannel.Server
     };
 
     private readonly Dictionary<ChatChannel, ChannelFilterCheckbox> _filterStates = new();

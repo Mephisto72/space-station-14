@@ -158,13 +158,10 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         component.Subverted = true;
 
         // Add the first emag law before the others
-        component.Lawset?.Laws.RemoveAt(0);
-        
         component.Lawset?.Laws.Insert(0, new SiliconLaw
         {
             LawString = Loc.GetString("law-emag-custom", ("name", Name(args.user)), ("title", Loc.GetString(component.Lawset.ObeysTo))),
-            Order = 0,
-            Sayable = false
+            Order = 0
         });
 
         //Add the secrecy law after the others
@@ -175,18 +172,14 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         });
     }
 
-    protected override void EnsureSubvertedSiliconRole(EntityUid mindId)
+    private void EnsureSubvertedSiliconRole(EntityUid mindId)
     {
-        base.EnsureSubvertedSiliconRole(mindId);
-
         if (!_roles.MindHasRole<SubvertedSiliconRoleComponent>(mindId))
             _roles.MindAddRole(mindId, "MindRoleSubvertedSilicon", silent: true);
     }
 
-    protected override void RemoveSubvertedSiliconRole(EntityUid mindId)
+    private void RemoveSubvertedSiliconRole(EntityUid mindId)
     {
-        base.RemoveSubvertedSiliconRole(mindId);
-
         if (_roles.MindHasRole<SubvertedSiliconRoleComponent>(mindId))
             _roles.MindTryRemoveRole<SubvertedSiliconRoleComponent>(mindId);
     }
@@ -246,10 +239,8 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         return ev.Laws;
     }
 
-    public override void NotifyLawsChanged(EntityUid uid, SoundSpecifier? cue = null)
+    public void NotifyLawsChanged(EntityUid uid, SoundSpecifier? cue = null)
     {
-        base.NotifyLawsChanged(uid, cue);
-
         if (!TryComp<ActorComponent>(uid, out var actor))
             return;
 

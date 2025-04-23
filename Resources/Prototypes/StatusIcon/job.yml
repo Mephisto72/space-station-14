@@ -239,11 +239,11 @@
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconAssistant
+  id: JobIconPassenger
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
-    state: Assistant
-  jobName: job-name-assistant
+    state: Passenger
+  jobName: job-name-passenger
 
 - type: jobIcon
   parent: JobIcon

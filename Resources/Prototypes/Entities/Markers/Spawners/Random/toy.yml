@@ -51,7 +51,7 @@
       prototypes:
         - ToyAi
         - ToyNuke
-        - ToyFigurineAssistant
+        - ToyFigurinePassenger
         - ToyGriffin
         - ToyHonk
         - ToyIan
@@ -88,7 +88,7 @@
       - ToyFigurineNukieCommander
       rareChance: 0.05
       prototypes:
-      - ToyFigurineAssistant
+      - ToyFigurinePassenger
       - ToyFigurineClown
       - ToyFigurineMime
       - ToyFigurineMusician
@@ -122,6 +122,7 @@
       - ToyFigurineFootsoldier
       - ToyFigurineWizardFake
       - ToyFigurineSlime
+      - ToyFigurineGreytider
       - ToyFigurineWizard
       - ToyGriffin
       - ToyOwlman

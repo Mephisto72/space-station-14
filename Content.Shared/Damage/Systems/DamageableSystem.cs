@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using Content.Shared._Starlight.Medical.Damage;
-using Content.Shared.CCVar;
-using Content.Shared.Chemistry;
+using System.Linq;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
@@ -10,7 +7,6 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Radiation.Events;
 using Content.Shared.Rejuvenate;
-using Robust.Shared.Configuration;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
@@ -24,24 +20,10 @@ namespace Content.Shared.Damage
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly INetManager _netMan = default!;
         [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
-        [Dependency] private readonly IConfigurationManager _config = default!;
-        [Dependency] private readonly SharedChemistryGuideDataSystem _chemistryGuideData = default!;
 
         private EntityQuery<AppearanceComponent> _appearanceQuery;
         private EntityQuery<DamageableComponent> _damageableQuery;
         private EntityQuery<MindContainerComponent> _mindContainerQuery;
-
-        public float UniversalAllDamageModifier { get; private set; } = 1f;
-        public float UniversalAllHealModifier { get; private set; } = 1f;
-        public float UniversalMeleeDamageModifier { get; private set; } = 1f;
-        public float UniversalProjectileDamageModifier { get; private set; } = 1f;
-        public float UniversalHitscanDamageModifier { get; private set; } = 1f;
-        public float UniversalReagentDamageModifier { get; private set; } = 1f;
-        public float UniversalReagentHealModifier { get; private set; } = 1f;
-        public float UniversalExplosionDamageModifier { get; private set; } = 1f;
-        public float UniversalThrownDamageModifier { get; private set; } = 1f;
-        public float UniversalTopicalsHealModifier { get; private set; } = 1f;
-        public float UniversalMobDamageModifier { get; private set; } = 1f;
 
         public override void Initialize()
         {
@@ -54,37 +36,6 @@ namespace Content.Shared.Damage
             _appearanceQuery = GetEntityQuery<AppearanceComponent>();
             _damageableQuery = GetEntityQuery<DamageableComponent>();
             _mindContainerQuery = GetEntityQuery<MindContainerComponent>();
-
-            // Damage modifier CVars are updated and stored here to be queried in other systems.
-            // Note that certain modifiers requires reloading the guidebook.
-            Subs.CVar(_config, CCVars.PlaytestAllDamageModifier, value =>
-            {
-                UniversalAllDamageModifier = value;
-                _chemistryGuideData.ReloadAllReagentPrototypes();
-            }, true);
-            Subs.CVar(_config, CCVars.PlaytestAllHealModifier, value =>
-            {
-                UniversalAllHealModifier = value;
-                _chemistryGuideData.ReloadAllReagentPrototypes();
-            }, true);
-            Subs.CVar(_config, CCVars.PlaytestProjectileDamageModifier, value => UniversalProjectileDamageModifier = value, true);
-            Subs.CVar(_config, CCVars.PlaytestMeleeDamageModifier, value => UniversalMeleeDamageModifier = value, true);
-            Subs.CVar(_config, CCVars.PlaytestProjectileDamageModifier, value => UniversalProjectileDamageModifier = value, true);
-            Subs.CVar(_config, CCVars.PlaytestHitscanDamageModifier, value => UniversalHitscanDamageModifier = value, true);
-            Subs.CVar(_config, CCVars.PlaytestReagentDamageModifier, value =>
-            {
-                UniversalReagentDamageModifier = value;
-                _chemistryGuideData.ReloadAllReagentPrototypes();
-            }, true);
-            Subs.CVar(_config, CCVars.PlaytestReagentHealModifier, value =>
-            {
-                 UniversalReagentHealModifier = value;
-                 _chemistryGuideData.ReloadAllReagentPrototypes();
-            }, true);
-            Subs.CVar(_config, CCVars.PlaytestExplosionDamageModifier, value => UniversalExplosionDamageModifier = value, true);
-            Subs.CVar(_config, CCVars.PlaytestThrownDamageModifier, value => UniversalThrownDamageModifier = value, true);
-            Subs.CVar(_config, CCVars.PlaytestTopicalsHealModifier, value => UniversalTopicalsHealModifier = value, true);
-            Subs.CVar(_config, CCVars.PlaytestMobDamageModifier, value => UniversalMobDamageModifier = value, true);
         }
 
         /// <summary>
@@ -173,7 +124,7 @@ namespace Content.Shared.Damage
         ///     null if the user had no applicable components that can take damage.
         /// </returns>
         public DamageSpecifier? TryChangeDamage(EntityUid? uid, DamageSpecifier damage, bool ignoreResistances = false,
-            bool interruptsDoAfters = true, DamageableComponent? damageable = null, EntityUid? origin = null, float armorPenetration = 0f)
+            bool interruptsDoAfters = true, DamageableComponent? damageable = null, EntityUid? origin = null)
         {
             if (!uid.HasValue || !_damageableQuery.Resolve(uid.Value, ref damageable, false))
             {
@@ -203,7 +154,7 @@ namespace Content.Shared.Damage
                     damage = DamageSpecifier.ApplyModifierSet(damage, modifierSet);
                 }
 
-                var ev = new DamageModifyEvent(damage, origin, armorPenetration);
+                var ev = new DamageModifyEvent(damage, origin);
                 RaiseLocalEvent(uid.Value, ev);
                 damage = ev.Damage;
 
@@ -212,19 +163,6 @@ namespace Content.Shared.Damage
                     return damage;
                 }
             }
-
-            // 🌟Starlight🌟 start
-            var finalEv = new DamageBeforeApplyEvent
-            {
-                Damage = damage,
-                Origin = origin
-            };
-            RaiseLocalEvent(uid.Value, finalEv);
-            if (finalEv.Cancelled)
-                return damage;
-            // 🌟Starlight🌟 end
-            
-            damage = ApplyUniversalAllModifiers(damage);
 
             // TODO DAMAGE PERFORMANCE
             // Consider using a local private field instead of creating a new dictionary here.
@@ -254,37 +192,6 @@ namespace Content.Shared.Damage
         }
 
         /// <summary>
-        /// Applies the two univeral "All" modifiers, if set.
-        /// Individual damage source modifiers are set in their respective code.
-        /// </summary>
-        /// <param name="damage">The damage to be changed.</param>
-        public DamageSpecifier ApplyUniversalAllModifiers(DamageSpecifier damage)
-        {
-            // Checks for changes first since they're unlikely in normal play.
-            if (UniversalAllDamageModifier == 1f && UniversalAllHealModifier == 1f)
-                return damage;
-
-            foreach (var (key, value) in damage.DamageDict)
-            {
-                if (value == 0)
-                    continue;
-
-                if (value > 0)
-                {
-                    damage.DamageDict[key] *= UniversalAllDamageModifier;
-                    continue;
-                }
-
-                if (value < 0)
-                {
-                    damage.DamageDict[key] *= UniversalAllHealModifier;
-                }
-            }
-
-            return damage;
-        }
-
-        /// <summary>
         ///     Sets all damage types supported by a <see cref="DamageableComponent"/> to the specified value.
         /// </summary>
         /// <remakrs>
@@ -308,7 +215,7 @@ namespace Content.Shared.Damage
             DamageChanged(uid, component, new DamageSpecifier());
         }
 
-        public void SetDamageModifierSetId(EntityUid uid, string? damageModifierSetId, DamageableComponent? comp = null)
+        public void SetDamageModifierSetId(EntityUid uid, string damageModifierSetId, DamageableComponent? comp = null)
         {
             if (!_damageableQuery.Resolve(uid, ref comp))
                 return;
@@ -397,14 +304,12 @@ namespace Content.Shared.Damage
         public readonly DamageSpecifier OriginalDamage;
         public DamageSpecifier Damage;
         public EntityUid? Origin;
-        public float ArmorPenetration;
 
-        public DamageModifyEvent(DamageSpecifier damage, EntityUid? origin = null, float armorPenetration = 0f)
+        public DamageModifyEvent(DamageSpecifier damage, EntityUid? origin = null)
         {
             OriginalDamage = damage;
             Damage = damage;
             Origin = origin;
-            ArmorPenetration = armorPenetration;
         }
     }
 

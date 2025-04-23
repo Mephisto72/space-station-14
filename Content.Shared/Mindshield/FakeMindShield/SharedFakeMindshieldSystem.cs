@@ -5,8 +5,6 @@ namespace Content.Shared.Mindshield.FakeMindShield;
 
 public sealed class SharedFakeMindShieldSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    
     public override void Initialize()
     {
         base.Initialize();
@@ -15,7 +13,6 @@ public sealed class SharedFakeMindShieldSystem : EntitySystem
 
     private void OnToggleMindshield(EntityUid uid, FakeMindShieldComponent comp, FakeMindShieldToggleEvent toggleEvent)
     {
-        _actionsSystem.SetToggled(toggleEvent.Action, !comp.IsEnabled); // Set it to what the Mindshield component WILL be after this
         comp.IsEnabled = !comp.IsEnabled;
         Dirty(uid, comp);
     }

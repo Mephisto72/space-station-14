@@ -18,24 +18,16 @@
   parent: BaseSurgicalRecipe
   id: Retractor
   result: Retractor
-  categories:
-  - Surgery
 
 - type: latheRecipe
   parent: BaseSurgicalRecipe
   id: Cautery
   result: Cautery
-  categories:
-  - Surgery
-  materials:
-    Steel: 200
 
 - type: latheRecipe
   parent: BaseToolRecipe
   id: Drill
   result: Drill
-  categories:
-  - Surgery
   materials:
     Steel: 200
     Plastic: 100
@@ -44,19 +36,11 @@
   parent: BaseSurgicalRecipe
   id: Saw
   result: Saw
-  categories:
-  - Surgery
-  materials:
-    Steel: 200
 
 - type: latheRecipe
   parent: BaseSurgicalRecipe
   id: Hemostat
   result: Hemostat
-  categories:
-  - Surgery
-  materials:
-    Steel: 200
 
 - type: latheRecipe
   id: BodyBag
@@ -91,8 +75,7 @@
 - type: latheRecipe
   id: HandheldHealthAnalyzer
   result: HandheldHealthAnalyzerEmpty
-  categories:
-  - Tools
+  category: Tools
   completetime: 4
   materials:
     Glass: 500

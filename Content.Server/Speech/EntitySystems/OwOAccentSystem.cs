@@ -1,6 +1,5 @@
 using Content.Server.Speech.Components;
 using Robust.Shared.Random;
-using Robust.Shared.Reflection;
 
 namespace Content.Server.Speech.EntitySystems
 {
@@ -8,18 +7,13 @@ namespace Content.Server.Speech.EntitySystems
     {
         [Dependency] private readonly IRobustRandom _random = default!;
 
+        private static readonly IReadOnlyList<string> Faces = new List<string>{
+            " (•`ω´•)", " ;;w;;", " owo", " UwU", " >w<", " ^w^"
+        }.AsReadOnly();
+
         private static readonly IReadOnlyDictionary<string, string> SpecialWords = new Dictionary<string, string>()
         {
             { "you", "wu" },
-            { "are", "r" },
-            { "hello", "mew" },
-            { "love", "luv" },
-            { "please", "plez" },
-            { "food", "noms" },
-            { "cute", "koot" },
-            { "now", "meow" },
-            { "look", "lookee" },
-            { "little", "lil" },
         };
 
         public override void Initialize()
@@ -33,7 +27,8 @@ namespace Content.Server.Speech.EntitySystems
             {
                 message = message.Replace(word, repl);
             }
-            return message
+
+            return message.Replace("!", _random.Pick(Faces))
                 .Replace("r", "w").Replace("R", "W")
                 .Replace("l", "w").Replace("L", "W");
         }

@@ -403,6 +403,3 @@
     - id: GrenadeFoamDart
       prob: 0.001
       orGroup: NotUseful
-    - id: BottleShip
-      prob: 0.01
-      orGroup: NotUseful

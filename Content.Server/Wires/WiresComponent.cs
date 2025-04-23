@@ -1,4 +1,3 @@
-using Content.Shared.Tag;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
@@ -32,12 +31,6 @@ public sealed partial class WiresComponent : Component
     /// </summary>
     [ViewVariables]
     public int WireSeed { get; set; }
-    
-    [ViewVariables]
-    public bool ViewWires = false;
-    
-    [DataField]
-    public ProtoId<TagPrototype> ShowWiresTag = "ShowWires";
 
     /// <summary>
     ///     The list of wires currently active on this entity.

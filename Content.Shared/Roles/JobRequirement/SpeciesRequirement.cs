@@ -3,7 +3,6 @@ using System.Text;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using JetBrains.Annotations;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
@@ -21,7 +20,6 @@ public sealed partial class SpeciesRequirement : JobRequirement
     public HashSet<ProtoId<SpeciesPrototype>> Species = new();
 
     public override bool Check(IEntityManager entManager,
-        ICommonSession? player,
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan> playTimes,

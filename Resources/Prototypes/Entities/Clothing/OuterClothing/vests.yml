@@ -9,8 +9,6 @@
     sprite: Clothing/OuterClothing/Vests/webvest.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Vests/webvest.rsi
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -18,8 +16,6 @@
         Slash: 0.6
         Piercing: 0.3
         Heat: 0.9
-    staminaModifier: 0.35
-    ingoreKnockdown: true
   - type: ExplosionResistance
     damageCoefficient: 0.9
 
@@ -34,8 +30,6 @@
     sprite: Clothing/OuterClothing/Vests/mercwebvest.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Vests/mercwebvest.rsi
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -48,7 +42,7 @@
 
 #Detective's vest
 - type: entity
-  parent: [ClothingOuterArmorBase, BaseSecurityContraband]
+  parent: [ClothingOuterArmorBase, BaseRestrictedContraband]
   id: ClothingOuterVestDetective
   name: detective's vest
   description: A hard-boiled private investigator's armored vest.

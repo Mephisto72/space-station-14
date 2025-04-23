@@ -1,4 +1,4 @@
-using Content.Client.Gameplay;
+﻿using Content.Client.Gameplay;
 using Content.Client.Ghost;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Client.UserInterface.Systems.Ghost.Widgets;
@@ -125,8 +125,6 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.RequestWarpsPressed += RequestWarps;
         Gui.ReturnToBodyPressed += ReturnToBody;
         Gui.GhostRolesPressed += GhostRolesPressed;
-        Gui.NewLifePressed += NewLifePressed; //🌟Starlight🌟
-        Gui.GhostThemePressed += GhostThemePressed; //🌟Starlight🌟
         Gui.TargetWindow.WarpClicked += OnWarpClicked;
         Gui.TargetWindow.OnGhostnadoClicked += OnGhostnadoClicked;
 
@@ -141,8 +139,6 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.RequestWarpsPressed -= RequestWarps;
         Gui.ReturnToBodyPressed -= ReturnToBody;
         Gui.GhostRolesPressed -= GhostRolesPressed;
-        Gui.NewLifePressed -= NewLifePressed; //🌟Starlight🌟
-        Gui.GhostThemePressed -= GhostThemePressed; //🌟Starlight🌟
         Gui.TargetWindow.WarpClicked -= OnWarpClicked;
 
         Gui.Hide();
@@ -163,15 +159,5 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
     private void GhostRolesPressed()
     {
         _system?.OpenGhostRoles();
-    }
-
-    private void NewLifePressed() //🌟Starlight🌟
-    {
-        _system?.OpenNewLife();
-    }
-    
-    private void GhostThemePressed() //🌟Starlight🌟
-    {
-        _system?.OpenGhostTheme();
     }
 }

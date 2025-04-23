@@ -1,5 +1,3 @@
-﻿using Content.Shared.Starlight.Antags.Abductor;
-using Content.Shared.Silicons.StationAi;
 using Content.Shared.Body.Events;
 using Content.Shared.Emoting;
 using Content.Shared.Hands;
@@ -85,9 +83,6 @@ namespace Content.Shared.ActionBlocker
         {
             if (!CanConsciouslyPerformAction(user))
                 return false;
-            
-            if (HasComp<StationAiOverlayComponent>(user) && HasComp<AbductorScientistComponent>(user) || HasComp<StationAiOverlayComponent>(user) && HasComp<AbductorAgentComponent>(user))
-                return false;
 
             var ev = new InteractionAttemptEvent(user, target);
             RaiseLocalEvent(user, ref ev);
@@ -104,15 +99,6 @@ namespace Content.Shared.ActionBlocker
             return !targetEv.Cancelled;
         }
 
-        //🌟Starlight🌟
-        public bool CanInstrumentInteract(EntityUid user, EntityUid used, EntityUid? target)
-        {
-            var ev = new InteractionAttemptEvent(user, target);
-            RaiseLocalEvent(used, ref ev);
-
-            return !ev.Cancelled;
-        }
-
         /// <summary>
         ///     Can a user utilize the entity that they are currently holding in their hands.
         /// </summary>>
@@ -123,16 +109,10 @@ namespace Content.Shared.ActionBlocker
         /// </remarks>
         public bool CanUseHeldEntity(EntityUid user, EntityUid used)
         {
-            var useEv = new UseAttemptEvent(user, used);
-            RaiseLocalEvent(user, useEv);
+            var ev = new UseAttemptEvent(user, used);
+            RaiseLocalEvent(user, ev);
 
-            if (useEv.Cancelled)
-                return false;
-
-            var usedEv = new GettingUsedAttemptEvent(user);
-            RaiseLocalEvent(used, usedEv);
-
-            return !usedEv.Cancelled;
+            return !ev.Cancelled;
         }
 
 

@@ -9,10 +9,10 @@ using Content.Server.Communications;
 using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking.Events;
-using Content.Server.GameTicking;
 using Content.Server.Pinpointer;
 using Content.Server.Popups;
 using Content.Server.RoundEnd;
+using Content.Server.Screens.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Components;
@@ -24,15 +24,15 @@ using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.GameTicking;
 using Content.Shared.Localizations;
-using Content.Shared.Screen.Components;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Events;
 using Content.Shared.Tag;
 using Content.Shared.Tiles;
 using Robust.Server.GameObjects;
+using Robust.Server.Maps;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
-using Robust.Shared.EntitySerialization.Systems;
+using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
@@ -60,7 +60,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
     [Dependency] private readonly DockingSystem _dock = default!;
     [Dependency] private readonly IdCardSystem _idSystem = default!;
     [Dependency] private readonly NavMapSystem _navMap = default!;
-    [Dependency] private readonly MapLoaderSystem _loader = default!;
+    [Dependency] private readonly MapLoaderSystem _map = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
@@ -71,8 +71,6 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
 
     private const float ShuttleSpawnBuffer = 1f;
-    
-    public TimeSpan? DockTime;
 
     private bool _emergencyShuttleEnabled;
 
@@ -94,13 +92,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         SubscribeLocalEvent<EmergencyShuttleComponent, FTLStartedEvent>(OnEmergencyFTL);
         SubscribeLocalEvent<EmergencyShuttleComponent, FTLCompletedEvent>(OnEmergencyFTLComplete);
         SubscribeNetworkEvent<EmergencyShuttleRequestPositionMessage>(OnShuttleRequestPosition);
-        SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnded);
         InitializeEmergencyConsole();
-    }
-    
-    private void OnRoundEnded(RoundEndTextAppendEvent ev)
-    {
-        DockTime = null;
     }
 
     private void OnRoundStart(RoundStartingEvent ev)
@@ -280,8 +272,6 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         }
 
         var targetGrid = _station.GetLargestGrid(Comp<StationDataComponent>(stationUid));
-        
-        DockTime = _timing.CurTime;
 
         // UHH GOOD LUCK
         if (targetGrid == null)
@@ -541,11 +531,10 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         }
 
         var map = _mapSystem.CreateMap(out var mapId);
-        if (!_loader.TryLoadGrid(mapId, component.Map, out var grid))
+        var grid = _map.LoadGrid(mapId, component.Map.ToString(), new MapLoadOptions()
         {
-            Log.Error($"Failed to set up centcomm grid!");
-            return;
-        }
+            LoadMap = false,
+        });
 
         if (!Exists(map))
         {
@@ -619,11 +608,15 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
 
         // Load escape shuttle
         var shuttlePath = ent.Comp1.EmergencyShuttlePath;
-        if (!_loader.TryLoadGrid(map.MapId,
-            shuttlePath,
-            out var shuttle,
+        var shuttle = _map.LoadGrid(map.MapId, shuttlePath.ToString(), new MapLoadOptions()
+        {
             // Should be far enough... right? I'm too lazy to bounds check CentCom rn.
-            offset: new Vector2(500f + ent.Comp2.ShuttleIndex, 0f)))
+            Offset = new Vector2(500f + ent.Comp2.ShuttleIndex, 0f),
+            // fun fact: if you just fucking yeet centcomm into nullspace anytime you try to spawn the shuttle, then any distance is far enough. so lets not do that
+            LoadMap = false,
+        });
+
+        if (shuttle == null)
         {
             Log.Error($"Unable to spawn emergency shuttle {shuttlePath} for {ToPrettyString(ent)}");
             return;

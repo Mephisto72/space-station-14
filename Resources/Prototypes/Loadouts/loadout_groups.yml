@@ -22,7 +22,6 @@
   - ClothingNeckAllyPin
   - ClothingNeckAromanticPin
   - ClothingNeckAsexualPin
-  - ClothingNeckAroacePin
   - ClothingNeckBisexualPin
   - ClothingNeckGayPin
   - ClothingNeckIntersexPin
@@ -50,7 +49,6 @@
   - TowelColorSilver
   - TowelColorWhite
   - TowelColorYellow
-  - SuperSynthesizerInstrument # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: Glasses
@@ -79,7 +77,6 @@
   - EmergencyOxygen
   - LoadoutSpeciesVoxNitrogen
 
-# nitrogen or oxygen tank, depending on what your species needs
 - type: loadoutGroup
   id: GroupEVATank
   name: loadout-group-EVA-tank
@@ -87,14 +84,6 @@
   loadouts:
   - LoadoutSpeciesEVANitrogen
   - LoadoutSpeciesEVAOxygen
-
-# vox get a nitrogen tank, other species get nothing
-- type: loadoutGroup
-  id: GroupEVATankVox
-  name: loadout-group-vox-tank
-  hidden: true
-  loadouts:
-  - LoadoutSpeciesVoxNitrogen
 
 - type: loadoutGroup
   id: GroupPocketTankDouble
@@ -147,13 +136,6 @@
   - CaptainWintercoat
 
 - type: loadoutGroup
-  id: CaptainEyewear
-  name: loadout-group-captain-eyewear
-  loadouts:
-  - CaptainGlasses
-  - CaptainHud
-
-- type: loadoutGroup
   id: HoPHead
   name: loadout-group-hop-head
   minLimit: 0
@@ -193,27 +175,27 @@
 
 # Civilian
 - type: loadoutGroup
-  id: AssistantJumpsuit
-  name: loadout-group-assistant-jumpsuit
+  id: PassengerJumpsuit
+  name: loadout-group-passenger-jumpsuit
   loadouts:
-  - BasicJumpsuit
-  - BasicJumpskirt
+  - GreyJumpsuit
+  - GreyJumpskirt
   - AncientJumpsuit
   - RainbowJumpsuit
 
 - type: loadoutGroup
-  id: AssistantFace
-  name: loadout-group-assistant-mask
+  id: PassengerFace
+  name: loadout-group-passenger-mask
   minLimit: 0
   loadouts:
-  - AssistantFace
+  - PassengerFace
 
 - type: loadoutGroup
-  id: AssistantGloves
-  name: loadout-group-assistant-gloves
+  id: PassengerGloves
+  name: loadout-group-passenger-gloves
   minLimit: 0
   loadouts:
-  - AssistantGloves
+  - PassengerGloves
 
 - type: loadoutGroup
   id: CommonBackpack
@@ -224,26 +206,24 @@
   - CommonDuffel
 
 - type: loadoutGroup
-  id: AssistantNeck
-  name: loadout-group-assistant-neck
+  id: PassengerNeck
+  name: loadout-group-passenger-neck
   minLimit: 0
   loadouts:
   - Mantle
 
 - type: loadoutGroup
-  id: AssistantOuterClothing
-  name: loadout-group-assistant-outerclothing
+  id: PassengerOuterClothing
+  name: loadout-group-passenger-outerclothing
   minLimit: 0
   loadouts:
-  - AssistantWintercoat
+  - PassengerWintercoat
 
 - type: loadoutGroup
-  id: AssistantShoes
-  name: loadout-group-assistant-shoes
+  id: PassengerShoes
+  name: loadout-group-passenger-shoes
   loadouts:
   - BlackShoes
-  - BrownShoes
-  - WhiteShoes
   - WinterBoots
 
 - type: loadoutGroup
@@ -749,7 +729,6 @@
 - type: loadoutGroup
   id: StationEngineerHead
   name: loadout-group-station-engineer-head
-  minLimit: 0
   loadouts:
   - StationEngineerHardhatYellow
   - StationEngineerHardhatOrange
@@ -879,7 +858,7 @@
   name: loadout-group-scientist-head
   minLimit: 0
   loadouts:
-#  - RoboticistCap Only for roboticist
+  - RoboticistCap
   - SkullBandana
   - ScientificBeret
 
@@ -936,7 +915,7 @@
   loadouts:
   - LatexGloves
   - PurpleGloves
-#  - RobohandsGloves Only for roboticist
+  - RobohandsGloves
 
 - type: loadoutGroup
   id: ScientistPDA
@@ -953,13 +932,6 @@
   - WhiteJumpskirt
 
 # Security
-- type: loadoutGroup
-  id: SecurityWeapon
-  name: loadout-group-security-weapon
-  loadouts:
-  - SecurityTaser
-  - SecurityDominator
-
 - type: loadoutGroup
   id: HeadofSecurityHead
   name: loadout-group-head-of-security-head
@@ -1017,79 +989,11 @@
   - WardenArmoredWinterCoat
 
 - type: loadoutGroup
-  id: SecurityEyewear
-  name: loadout-group-security-eyewear
-  loadouts:
-  - SecurityGlasses
-  - SecurityHud
-
-- type: loadoutGroup
-  id: BrigmedicHead
-  name: loadout-group-brigmedic-head
-  minLimit: 0
-  loadouts:
-  - BrigmedicBeret
-  - SecurityHelmet
-  - CorpsmanBeret #Starlight
-
-- type: loadoutGroup
-  id: BrigmedicJumpsuit
-  name: loadout-group-brigmedic-jumpsuit
-  loadouts:
-  - JumpsuitBrigmedic
-  - JumpsuitCorpsman
-  - JumpskirtBrigmedic
-  - JumpskirtCorpsman #Starlight
-
-- type: loadoutGroup
-  id: BrigmedicBackpack
-  name: loadout-group-brigmedic-backpack
-  loadouts:
-  - BrigmedicBackpack
-  - BrigmedicSatchel
-  - BrigmedicDuffel
-
-- type: loadoutGroup
-  id: BrigmedicOuterClothing
-  name: loadout-group-brigmedic-outerclothing
-  loadouts:
-  - BrigmedicCoat
-  - SecurityOfficerWintercoat
-  - CorpsmanCoat #Starlight
-
-- type: loadoutGroup
-  id: BrigmedicEyewear
-  name: loadout-group-brigmedic-eyewear
-  loadouts:
-  - BrigmedicGlasses
-  - BrigmedicHud
-
-- type: loadoutGroup
-  id: BrigmedicBelt
-  name: loadout-group-brigmedic-belt
-  loadouts:
-  - BrigmedicRig
-  - BrigmedicBelt #Starlight
-  - CorpsmanBelt #Starlight
-
-#Starlight Start
-- type: loadoutGroup 
-  id: BrigmedicGloves
-  name: loadout-group-brigmedic-gloves
-  loadouts:
-  - Nitrile
-  - BlackNitrile 
-#Starlight End
-
-- type: loadoutGroup
   id: SecurityHead
   name: loadout-group-security-head
   minLimit: 0
   loadouts:
   - SecurityHelmet
-  - SecurityHelmetPlate
-  - SecurityHelmetStabproof
-  - SecurityHelmetHeatAbsorbent
   - SecurityBeret
   - SecurityHat
   - TrooperHat
@@ -1127,9 +1031,6 @@
   loadouts:
   - ArmorVest
   - ArmorVestSlim
-  - ArmorVestPlate
-  - ArmorVestStab
-  - ArmorVestHeatAbsorb
   - SecurityOfficerWintercoat
 
 - type: loadoutGroup

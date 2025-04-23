@@ -14,12 +14,6 @@
       "name": "mech_lights_on"
     },
     {
-      "name": "mech_siren_off"
-    },
-    {
-      "name": "mech_siren_on"
-    },
-    {
       "name": "mech_view_stats"
     },
     {
@@ -86,10 +80,7 @@
       "name": "strafe"
     },
     {
-      "name": "mech_night_vision_off"
-    },
-    {
-      "name": "mech_night_vision_on"
+      "name": "meson"
     },
     {
       "name": "mech_ivanov"

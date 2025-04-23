@@ -1,23 +1,10 @@
 - type: entity
   name: BaseWeaponShotgun
   parent: BaseItem
-  id: BaseWeaponShotgunAny
+  id: BaseWeaponShotgun
   description: A rooty tooty point and shooty.
   abstract: true
   components:
-  - type: RestrictByUserTag
-    doestContain:
-    - Abductor
-    messages:
-    - abductor-gun-restricted-1
-  - type: KnockbackByUserTag
-    doestContain:
-      Resomi:
-        knockback: 3
-        staminaMultiplier: 20
-      Felionoid:
-        knockback: 1.5 #half of what resomi take
-        staminaMultiplier: 20
   - type: Sprite
     layers:
     - state: icon
@@ -41,18 +28,6 @@
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-        ents: []
-  - type: StaticPrice
-    price: 500
-    
-- type: entity
-  parent: BaseWeaponShotgunAny
-  id: BaseWeaponShotgun
-  abstract: true
-  components:
   - type: BallisticAmmoProvider
     whitelist:
       tags:
@@ -61,10 +36,17 @@
     proto: ShellShotgun
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: StaticPrice
+    price: 500
 
 - type: entity
   name: Bulldog
-  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSyndicateContraband]
+  # Don't parent to BaseWeaponShotgun because it differs significantly
+  parent: [BaseItem, BaseGunWieldable, BaseSyndicateContraband]
   id: WeaponShotgunBulldog
   description: An automatic magazine-fed shotgun for close-quarters combat. Kicks like a mule on steroids. Uses .50 shotgun shells.
   components:
@@ -76,16 +58,24 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
-    sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
+    size: Large
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
-  - type: GunRequiresWield
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
-    spread: 15
     fireRate: 2
     selectedMode: FullAuto
     availableModes:
     - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -102,12 +92,14 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
-  - type: ChamberMagazineAmmoProvider
+  - type: MagazineAmmoProvider
   - type: MagazineVisuals
     magState: mag
     steps: 1
     zeroVisible: true
   - type: Appearance
+  - type: StaticPrice
+    price: 500
 
 - type: entity
   name: double-barreled shotgun
@@ -124,7 +116,6 @@
     sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
-    spread: 10
     fireRate: 3
   - type: BallisticAmmoProvider
     capacity: 2
@@ -144,26 +135,23 @@
     proto: ShellShotgunBeanbag
 
 - type: entity
-  name: Sentiel
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
+  name: Enforcer
+  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseRestrictedContraband]
   id: WeaponShotgunEnforcer
   description: A premium semi-automatic shotgun, and the pride of all security forces. Uses .50 shotgun shells.
   components: # intend for Enforcer to have wider choke for semi-auto function
-  - type: Gun
-    spread: 5
-    pump: true
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
   - type: Item
-    sprite: Objects/Weapons/Guns/Shotguns/sentiel_inhands_64x.rsi
+    sprite: Objects/Weapons/Guns/Shotguns/enforcer_inhands_64x.rsi
   - type: BallisticAmmoProvider
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
 
 - type: entity
   parent: WeaponShotgunEnforcer
-  id: WeaponShotgunSentielRubber
+  id: WeaponShotgunEnforcerRubber
   suffix: Non-Lethal
   components:
   - type: BallisticAmmoProvider
@@ -171,7 +159,7 @@
 
 - type: entity
   name: Kammerer
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
+  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseRestrictedContraband]
   id: WeaponShotgunKammerer
   description: An old yet faithful design, and a favorite among irregular forces of many worlds. Uses .50 shotgun shells.
   components: # intend for Kammerer to have tighter choke for slower fire rate and/or manual cycling
@@ -180,15 +168,13 @@
     shape:
     - 0,0,4,0
     sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
-  - type: Gun
-    spread: 15
-    pump: true
-    fireRate: 1
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
+  - type: Gun
+    fireRate: 1
   - type: Tag
     tags:
     - WeaponShotgunKammerer
@@ -207,7 +193,6 @@
     size: Small
     sprite: Objects/Weapons/Guns/Shotguns/sawn_inhands_64x.rsi
   - type: Gun
-    spread: 40
     fireRate: 3
   - type: BallisticAmmoProvider
     capacity: 2
@@ -244,7 +229,6 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/hm_pistol.rsi
   - type: Gun
-    spread: 51
     fireRate: 4
   - type: BallisticAmmoProvider
     capacity: 1
@@ -270,7 +254,6 @@
     sprite: Objects/Weapons/Guns/Shotguns/blunderbuss.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
-    spread: 15
     fireRate: 2
   - type: BallisticAmmoProvider
     capacity: 1
@@ -294,7 +277,6 @@
     sprite: Objects/Weapons/Guns/Shotguns/improvised_shotgun_inhands_64x.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
-    spread: 30
     fireRate: 4 #No reason to stifle the firerate since you have to manually reload every time anyways.
   - type: BallisticAmmoProvider
     capacity: 1

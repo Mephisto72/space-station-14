@@ -10,7 +10,6 @@
       organs:
         brain: OrganHumanBrain
         eyes: OrganHumanEyes
-        tongue: OrganHumanTongue
     torso:
       part: TorsoGingerbread
       connections:

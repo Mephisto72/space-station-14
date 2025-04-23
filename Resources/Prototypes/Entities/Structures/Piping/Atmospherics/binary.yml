@@ -39,9 +39,6 @@
   - type: Rotatable
   - type: Transform
     noRot: false
-  - type: SubFloorHide
-    visibleLayers:
-    - enum.SubfloorLayers.FirstLayer
   - type: Sprite
     sprite: Structures/Piping/Atmospherics/pump.rsi
     layers:
@@ -78,12 +75,6 @@
       path: /Audio/Ambience/Objects/gas_pump.ogg
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: GasFlowRegulator
-  - type: VentCrawTube
-    containerId: VentCrawTube
-  - type: VentCrawTransit
-  - type: ContainerContainer
-    containers:
-      VentCrawTube: !type:Container
   - type: GuideHelp
     guides:
     - Pumps
@@ -104,9 +95,6 @@
     - type: Rotatable
     - type: Transform
       noRot: false
-    - type: SubFloorHide
-      visibleLayers:
-      - enum.SubfloorLayers.FirstLayer
     - type: Sprite
       sprite: Structures/Piping/Atmospherics/pump.rsi
       layers:
@@ -149,12 +137,6 @@
     - type: WiredNetworkConnection
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasFlowRegulator
-    - type: VentCrawTube
-      containerId: VentCrawTube
-    - type: VentCrawTransit
-    - type: ContainerContainer
-      containers:
-        VentCrawTube: !type:Container
     - type: GuideHelp
       guides:
       - Pumps
@@ -167,9 +149,6 @@
   placement:
     mode: SnapgridCenter
   components:
-    - type: SubFloorHide
-      visibleLayers:
-      - enum.SubfloorLayers.FirstLayer
     - type: Sprite
       sprite: Structures/Piping/Atmospherics/pump.rsi
       layers:
@@ -192,12 +171,6 @@
         path: /Audio/Ambience/Objects/gas_hiss.ogg
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasValve
-    - type: VentCrawTube
-      containerId: VentCrawTube
-    - type: VentCrawTransit
-    - type: ContainerContainer
-      containers:
-        VentCrawTube: !type:Container
     - type: GuideHelp
       guides:
       - PassiveGate
@@ -211,9 +184,6 @@
     mode: SnapgridCenter
   components:
     # TODO ATMOS: Give unique sprite.
-    - type: SubFloorHide
-      visibleLayers:
-      - enum.SubfloorLayers.FirstLayer
     - type: Sprite
       sprite: Structures/Piping/Atmospherics/pump.rsi
       layers:
@@ -254,12 +224,6 @@
         path: /Audio/Ambience/Objects/gas_hiss.ogg
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasValve
-    - type: VentCrawTube
-      containerId: VentCrawTube
-    - type: VentCrawTransit
-    - type: ContainerContainer
-      containers:
-        VentCrawTube: !type:Container
     - type: GuideHelp
       guides:
       - ManualValve
@@ -273,9 +237,6 @@
     mode: SnapgridCenter
   components:
   - type: StationAiWhitelist
-  - type: SubFloorHide
-    visibleLayers:
-    - enum.SubfloorLayers.FirstLayer
   - type: Sprite
     sprite: Structures/Piping/Atmospherics/pump.rsi
     layers:
@@ -327,12 +288,6 @@
       path: /Audio/Ambience/Objects/gas_hiss.ogg
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: GasValve
-  - type: VentCrawTube
-    containerId: VentCrawTube
-  - type: VentCrawTransit
-  - type: ContainerContainer
-    containers:
-      VentCrawTube: !type:Container
   - type: GuideHelp
     guides:
     - SignalValve
@@ -345,9 +300,6 @@
   placement:
     mode: SnapgridCenter
   components:
-    - type: SubFloorHide
-      visibleLayers:
-      - enum.SubfloorLayers.FirstLayer
     - type: Sprite
       sprite: Structures/Piping/Atmospherics/gascanisterport.rsi
       layers:
@@ -370,14 +322,6 @@
       node: port
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentOpening
-    - type: VentCrawTube
-      containerId: VentCrawTube
-    - type: VentCrawJunction
-      degrees:
-        - 0
-    - type: ContainerContainer
-      containers:
-        VentCrawTube: !type:Container
     - type: GuideHelp
       guides:
       - GasCanisters
@@ -390,9 +334,6 @@
   placement:
     mode: SnapgridCenter
   components:
-    - type: SubFloorHide
-      visibleLayers:
-      - enum.SubfloorLayers.FirstLayer
     - type: Sprite
       drawdepth: FloorObjects
       sprite: Structures/Piping/Atmospherics/vent.rsi
@@ -560,9 +501,6 @@
   id: HeatExchangerBend
   suffix: Bend
   components:
-    - type: SubFloorHide
-      visibleLayers:
-      - enum.SubfloorLayers.FirstLayer
     - type: Sprite
       layers:
       - sprite: Structures/Piping/Atmospherics/pipe.rsi

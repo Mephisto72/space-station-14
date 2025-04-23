@@ -57,7 +57,7 @@ namespace Content.Server.Repairable
                 return;
 
             // Only try repair the target if it is damaged
-            if (!TryComp<DamageableComponent>(uid, out var damageable) || damageable.TotalDamage == 0 || !CanRepair(uid, component, args.User))
+            if (!TryComp<DamageableComponent>(uid, out var damageable) || damageable.TotalDamage == 0)
                 return;
 
             float delay = component.DoAfterDelay;
@@ -74,21 +74,6 @@ namespace Content.Server.Repairable
             // Run the repairing doafter
             args.Handled = _toolSystem.UseTool(args.Used, args.User, uid, delay, component.QualityNeeded, new RepairFinishedEvent(), component.FuelCost);
         }
-        
-        public bool CanRepair(EntityUid Target, RepairableComponent Component, EntityUid User)
-        {
-            var ev = new CanRepaireEvent((Target, Component), User);
-            RaiseLocalEvent(ref ev);
-            RaiseLocalEvent(Target, ref ev);
-            
-            if (ev.Cancelled)
-            {
-                _popup.PopupEntity(ev.Message, Target, User, PopupType.MediumCaution);
-                return false;
-            }
-            
-            return true;
-        }
     }
 
     /// <summary>
@@ -98,4 +83,5 @@ namespace Content.Server.Repairable
     /// <param name="User"></param>
     [ByRefEvent]
     public readonly record struct RepairedEvent(Entity<RepairableComponent> Ent, EntityUid User);
+
 }

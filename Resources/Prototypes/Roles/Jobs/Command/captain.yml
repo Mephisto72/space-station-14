@@ -6,16 +6,16 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 72000 # 20 hours
+      time: 54000 # 15 hours
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 72000 # 20 hours
+      time: 54000 # 15 hours
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 72000 # 20 hours
+      time: 54000 # 15 hours
     - !type:DepartmentTimeRequirement
       department: Command
-      time: 90000 # 25 hours
+      time: 54000 # 15 hours
   weight: 20
   startingGear: CaptainGear
   icon: "JobIconCaptain"
@@ -35,6 +35,7 @@
   id: CaptainGear
   equipment:
     shoes: ClothingShoesBootsLaceup
+    eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCaptain
     id: CaptainPDA
     ears: ClothingHeadsetAltCommand

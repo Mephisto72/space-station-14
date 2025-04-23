@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Content.Server.Chat.Managers;
 using Content.Server.Database;
 using Content.Server.Players;
-using Content.Shared.Starlight;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Info;

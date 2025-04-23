@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
@@ -37,7 +37,6 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -87,8 +86,6 @@ namespace Content.Shared.Interaction
         public const float InteractionRangeSquared = InteractionRange * InteractionRange;
         public const float MaxRaycastRange = 100f;
         public const string RateLimitKey = "Interaction";
-
-        private static readonly ProtoId<TagPrototype> BypassInteractionRangeChecksTag = "BypassInteractionRangeChecks";
 
         public delegate bool Ignored(EntityUid entity);
 
@@ -157,7 +154,7 @@ namespace Content.Shared.Interaction
             if (!_actionBlockerSystem.CanInteract(ev.Actor, ev.Target))
             {
                 // We permit ghosts to open uis unless explicitly blocked
-                if (ev.Message is not OpenBoundInterfaceMessage || !HasComp<GhostComponent>(ev.Actor) || uiComp?.BlockSpectators == true || _tagSystem.HasTag(ev.Actor, "CantInteract"))
+                if (ev.Message is not OpenBoundInterfaceMessage || !HasComp<GhostComponent>(ev.Actor) || uiComp?.BlockSpectators == true)
                 {
                     ev.Cancel();
                     return;
@@ -321,7 +318,7 @@ namespace Content.Shared.Interaction
         {
             // This is for Admin/mapping convenience. If ever there are other ghosts that can still interact, this check
             // might need to be more selective.
-            return !_tagSystem.HasTag(user, BypassInteractionRangeChecksTag);
+            return !_tagSystem.HasTag(user, "BypassInteractionRangeChecks");
         }
 
         /// <summary>

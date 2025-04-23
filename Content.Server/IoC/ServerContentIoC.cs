@@ -1,4 +1,3 @@
-using Content.Server.Starlight;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
@@ -22,11 +21,8 @@ using Content.Server.Players.RateLimiting;
 using Content.Server.Preferences.Managers;
 using Content.Server.ServerInfo;
 using Content.Server.ServerUpdates;
-using Content.Server.Starlight.TextToSpeech;
 using Content.Server.Voting.Managers;
-using Content.Server.Holiday;
 using Content.Server.Worldgen.Tools;
-using Content.Shared.Starlight;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Chat;
@@ -56,9 +52,6 @@ namespace Content.Server.IoC
             IoCManager.Register<IVoteManager, VoteManager>();
             IoCManager.Register<IPlayerLocator, PlayerLocator>();
             IoCManager.Register<IAfkManager, AfkManager>();
-            
-            IoCManager.Register<HolidaySystem>();
-            
             IoCManager.Register<IGameMapManager, GameMapManager>();
             IoCManager.Register<RulesManager, RulesManager>();
             IoCManager.Register<IBanManager, BanManager>();
@@ -83,11 +76,6 @@ namespace Content.Server.IoC
             IoCManager.Register<IWatchlistWebhookManager, WatchlistWebhookManager>();
             IoCManager.Register<ConnectionManager>();
             IoCManager.Register<MultiServerKickManager>();
-            IoCManager.Register<CVarControlManager>();
-            // 🌟Starlight🌟
-            IoCManager.Register<ISharedPlayersRoleManager, PlayerRolesManager>(); 
-            IoCManager.Register<IPlayerRolesManager, PlayerRolesManager>();     
-            IoCManager.Register<ITTSManager, TTSManager>();
         }
     }
 }

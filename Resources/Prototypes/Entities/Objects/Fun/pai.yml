@@ -6,7 +6,6 @@
   name: personal ai device
   description: Your electronic pal who's fun to be with!
   components:
-  - type: TextToSpeech
   - type: Instrument
     allowPercussion: false
     handheld: false
@@ -83,7 +82,6 @@
   name: syndicate personal ai device
   description: Your Syndicate pal who's fun to be with!
   components:
-  - type: TextToSpeech
   - type: Sprite
     sprite: Objects/Fun/pai.rsi
     layers:
@@ -118,7 +116,6 @@
   name: potato artificial intelligence
   description: It's a potato. You forced it to be sentient, you monster.
   components:
-  - type: TextToSpeech
   - type: Sprite
     sprite: Objects/Fun/pai.rsi
     layers:

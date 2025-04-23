@@ -80,7 +80,6 @@
     preinstalled:
       - CrewManifestCartridge
       - NotekeeperCartridge
-      - NanoTaskCartridge
       - NewsReaderCartridge
     cartridgeSlot:
       priority: -1
@@ -124,25 +123,6 @@
 
 - type: entity
   parent: BasePDA
-  id: BaseWidePDA
-  abstract: true
-  components:
-  - type: Sprite
-    sprite: Objects/Devices/pda.rsi
-    layers:
-    - map: [ "enum.PdaVisualLayers.Base" ]
-      state: "pda"
-    - state: "light_overlay_wide"
-      map: [ "enum.PdaVisualLayers.Flashlight" ]
-      shader: "unshaded"
-      visible: false
-    - state: "id_overlay_wide"
-      map: [ "enum.PdaVisualLayers.IdLight" ]
-      shader: "unshaded"
-      visible: false
-
-- type: entity
-  parent: BasePDA
   id: BaseSecurityPDA
   abstract: true
   components:
@@ -150,7 +130,6 @@
     preinstalled:
     - CrewManifestCartridge
     - NotekeeperCartridge
-    - NanoTaskCartridge
     - NewsReaderCartridge
     - WantedListCartridge
 
@@ -164,18 +143,17 @@
     preinstalled:
       - CrewManifestCartridge
       - NotekeeperCartridge
-      - NanoTaskCartridge
       - NewsReaderCartridge
       - MedTekCartridge
 
 - type: entity
   parent: BasePDA
-  id: AssistantPDA
-  name: assistant PDA
+  id: PassengerPDA
+  name: passenger PDA
   description: Why isn't it gray?
   components:
   - type: Pda
-    id: AssistantIDCard
+    id: PassengerIDCard
   - type: PdaBorderColor
     borderColor: "#717059"
 
@@ -514,7 +492,6 @@
     preinstalled:
       - CrewManifestCartridge
       - NotekeeperCartridge
-      - NanoTaskCartridge
       - NewsReaderCartridge
       - AstroNavCartridge
 
@@ -537,7 +514,7 @@
     state: pda-bartender
 
 - type: entity
-  parent: BaseWidePDA
+  parent: BasePDA
   id: LibrarianPDA
   name: librarian PDA
   description: Smells like books.
@@ -863,7 +840,6 @@
     preinstalled:
     - CrewManifestCartridge
     - NotekeeperCartridge
-    - NanoTaskCartridge
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
@@ -891,7 +867,7 @@
   parent: BaseSecurityPDA
   id: SecurityPDA
   name: security PDA
-  description: Red to hide the stains of assistant blood.
+  description: Red to hide the stains of passenger blood.
   components:
   - type: Pda
     id: SecurityIDCard
@@ -932,7 +908,6 @@
     preinstalled:
       - CrewManifestCartridge
       - NotekeeperCartridge
-      - NanoTaskCartridge
       - NewsReaderCartridge
       - MedTekCartridge
       - WantedListCartridge
@@ -949,7 +924,6 @@
   - type: Pda
     id: UniversalIDCard
   - type: HealthAnalyzer
-    maxScanRange: null
     scanDelay: 0
     silent: true
   - type: CartridgeLoader
@@ -958,7 +932,6 @@
     preinstalled:
       - CrewManifestCartridge
       - NotekeeperCartridge
-      - NanoTaskCartridge
       - NewsReaderCartridge
       - LogProbeCartridge
       - WantedListCartridge
@@ -1039,7 +1012,7 @@
   description: 99 and 44/100ths percent pure plastic.
   components:
   - type: Pda
-    id: AssistantIDCard
+    id: PassengerIDCard
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
@@ -1081,7 +1054,6 @@
     uiKey: enum.PdaUiKey.Key
     preinstalled:
       - NotekeeperCartridge
-      - NanoTaskCartridge
 
 - type: entity
   parent: BaseSecurityPDA
@@ -1108,7 +1080,6 @@
     preinstalled:
       - CrewManifestCartridge
       - NotekeeperCartridge
-      - NanoTaskCartridge
       - NewsReaderCartridge
       - MedTekCartridge
       - WantedListCartridge
@@ -1279,7 +1250,6 @@
     preinstalled:
     - CrewManifestCartridge
     - NotekeeperCartridge
-    - NanoTaskCartridge
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
@@ -1307,7 +1277,6 @@
     preinstalled:
     - CrewManifestCartridge
     - NotekeeperCartridge
-    - NanoTaskCartridge
     - NewsReaderCartridge
     - WantedListCartridge
     - MedTekCartridge
@@ -1321,33 +1290,6 @@
   components:
   - type: Pda
     id: CluwneIDCard
-    penSlot:
-      startingItem: CrayonGreen
-      ejectSound: /Audio/Items/bikehorn.ogg
-      priority: -1
-      whitelist:
-        tags:
-        - Write
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-cluwne
-  - type: PdaBorderColor
-    borderColor: "#1c8f4d"
-  - type: Icon
-    state: pda-cluwne
-  - type: Unremoveable
-
-- type: entity
-  parent: ClownPDA
-  id: CluwneBeastPDA
-  name: cluwne PDA
-  suffix: Unremoveable
-  description: Cursed cluwne PDA.
-  components:
-  - type: Pda
-    id: CluwneBeastIDCard
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
@@ -1481,13 +1423,12 @@
     uiKey: enum.PdaUiKey.Key
     preinstalled:
       - NotekeeperCartridge
-      - NanoTaskCartridge
       - MedTekCartridge
 
 - type: entity
   parent: BasePDA
   id: ChameleonPDA
-  name: assistant PDA
+  name: passenger PDA
   description: Why isn't it gray?
   suffix: Chameleon
   components:
@@ -1498,7 +1439,7 @@
     - DoorBumpOpener
   - type: ChameleonClothing
     slot: [idcard]
-    default: AssistantPDA
+    default: PassengerPDA
     requireTag: WhitelistChameleonPDA
   - type: UserInterface
     interfaces:
@@ -1514,27 +1455,3 @@
         type: HealthAnalyzerBoundUserInterface
       enum.ChameleonUiKey.Key:
         type: ChameleonBoundUserInterface
-
-- type: entity
-  parent: BaseWidePDA
-  id: WizardPDA
-  name: wizard PDA
-  description: You hear faint whispers coming from it.
-  components:
-  - type: Pda
-    id: WizardIDCard
-    penSlot:
-      startingItem: PenWiz
-      priority: -1
-      whitelist:
-        tags:
-        - Write
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-wizard
-  - type: PdaBorderColor
-    borderColor: "#7F3300"
-  - type: Icon
-    state: pda-wizard

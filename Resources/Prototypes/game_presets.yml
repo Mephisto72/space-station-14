@@ -3,8 +3,7 @@
   alias:
     - survival
   name: survival-title
-  showInVote: true # 🌟Starlight🌟
-  minPlayers: 10
+  showInVote: false # secret
   description: survival-description
   rules:
     - MeteorSwarmScheduler
@@ -20,8 +19,7 @@
     - junk
     - meteorhell
   name: kessler-syndrome-title
-  showInVote: true # 🌟Starlight🌟
-  minPlayers: 10
+  showInVote: false # secret
   description: kessler-syndrome-description
   rules:
     - KesslerSyndromeScheduler
@@ -34,7 +32,6 @@
   alias:
   - all
   name: all-at-once-title
-  minPlayers: 40
   description: all-at-once-description
   showInVote: false
   rules:
@@ -44,7 +41,6 @@
     - Zombie
     - KesslerSyndromeScheduler
     - RampingStationEventScheduler
-    - Changeling
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
 
@@ -58,7 +54,6 @@
   name: aller-at-once-title
   description: aller-at-once-description
   showInVote: false #Please god dont do this
-  minPlayers: 40
   rules:
     - Nukeops
     - Traitor
@@ -79,9 +74,8 @@
   - extended
   - shittersafari
   name: extended-title
-  showInVote: true # 🌟Starlight🌟
+  showInVote: false #2boring2vote
   description: extended-description
-  minPlayers: 4
   rules:
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
@@ -94,7 +88,7 @@
   - greenshift
   - shittersafarideluxeedition
   name: greenshift-title
-  showInVote: true # 🌟Starlight🌟
+  showInVote: false #4boring4vote
   description: greenshift-description
   rules:
   - SpaceTrafficControlFriendlyEventScheduler
@@ -107,7 +101,6 @@
     - sekrit
   name: secret-title
   showInVote: true
-  minPlayers: 4
   description: secret-description
   rules:
     - Secret
@@ -154,16 +147,14 @@
     - tator
   name: traitor-title
   description: traitor-description
-  minPlayers: 4
-  showInVote: true # 🌟Starlight🌟
+  showInVote: false
   rules:
-  - DummyNonAntagChance
-  - Traitor
-  - SubGamemodesRule
-  - BasicStationEventScheduler
-  - MeteorSwarmScheduler
-  - SpaceTrafficControlEventScheduler
-  - BasicRoundstartVariation
+    - Traitor
+    - SubGamemodesRule
+    - BasicStationEventScheduler
+    - MeteorSwarmScheduler
+    - SpaceTrafficControlEventScheduler
+    - BasicRoundstartVariation
 
 - type: gamePreset
   id: Deathmatch
@@ -172,7 +163,6 @@
     - dm
   name: death-match-title
   description: death-match-description
-  minPlayers: 4
   maxPlayers: 15
   showInVote: true
   supportedMaps: DeathMatchMapPool
@@ -185,16 +175,14 @@
     - nukeops
   name: nukeops-title
   description: nukeops-description
-  minPlayers: 40
-  showInVote: true # 🌟Starlight🌟
+  showInVote: false
   rules:
-  - Nukeops
-  - DummyNonAntagChance
-  - SubGamemodesRule
-  - BasicStationEventScheduler
-  - MeteorSwarmScheduler
-  - SpaceTrafficControlEventScheduler
-  - BasicRoundstartVariation
+    - Nukeops
+    - SubGamemodesRule
+    - BasicStationEventScheduler
+    - MeteorSwarmScheduler
+    - SpaceTrafficControlEventScheduler
+    - BasicRoundstartVariation
 
 - type: gamePreset
   id: Revolutionary
@@ -204,32 +192,14 @@
     - revolutionaries
   name: rev-title
   description: rev-description
-  minPlayers: 30
-  showInVote: true # 🌟Starlight🌟
-  rules:
-  - DummyNonAntagChance
-  - Revolutionary
-  - SubGamemodesRule
-  - BasicStationEventScheduler
-  - MeteorSwarmScheduler
-  - SpaceTrafficControlEventScheduler
-  - BasicRoundstartVariation
-
-- type: gamePreset
-  id: Wizard
-  alias:
-  - wizard
-  name: wizard-title
-  description: wizard-description
   showInVote: false
   rules:
-  - Wizard
-  - DummyNonAntagChance
-  - SubGamemodesRuleNoWizard #No Dual Wizards at the start, midround is fine
-  - BasicStationEventScheduler
-  - MeteorSwarmScheduler
-  - SpaceTrafficControlEventScheduler
-  - BasicRoundstartVariation
+    - Revolutionary
+    - SubGamemodesRule
+    - BasicStationEventScheduler
+    - MeteorSwarmScheduler
+    - SpaceTrafficControlEventScheduler
+    - BasicRoundstartVariation
 
 - type: gamePreset
   id: Zombie
@@ -241,8 +211,7 @@
   - zomber
   name: zombie-title
   description: zombie-description
-  minPlayers: 50 # 🌟Starlight🌟
-  showInVote: true # 🌟Starlight🌟
+  showInVote: false
   rules:
   - Zombie
   - BasicStationEventScheduler
@@ -258,59 +227,10 @@
   - meteombies
   name: zombieteors-title
   description: zombieteors-description
-  minPlayers: 50 # 🌟Starlight🌟
-  showInVote: true # 🌟Starlight🌟
+  showInVote: false
   rules:
   - Zombie
   - BasicStationEventScheduler
   - KesslerSyndromeScheduler
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
-  
-- type: gamePreset
-  id: Vampire
-  alias:
-  - vamp
-  - vamps
-  - vampire
-  - vampires
-  name: vampire-gamemode-title
-  description: vampire-gamemode-description
-  showInVote: true # 🌟Starlight🌟
-  minPlayers: 50 # 🌟Starlight🌟
-  rules:
-  - Vampire
-  - SubGamemodesRule
-  - BasicStationEventScheduler
-  - MeteorSwarmScheduler
-  - BasicRoundstartVariation
-
-- type: gamePreset
-  id: Changeling
-  alias:
-    - ling
-    - lings
-    - changeling
-  name: changeling-gamemode-title
-  description: changeling-gamemode-description
-  showInVote: false
-  rules:
-    - Changeling
-    - SubGamemodesRule
-    - BasicStationEventScheduler
-    - BasicRoundstartVariation
-
-- type: gamePreset
-  id: Traitorling
-  alias:
-    - lingtraitor
-    - traitorling
-  name: secret-title
-  description: secret-description
-  showInVote: false
-  rules:
-    - Changeling
-    - Traitor
-    - SubGamemodesRule
-    - BasicStationEventScheduler
-    - BasicRoundstartVariation

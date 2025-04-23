@@ -5,7 +5,6 @@
   name: white jumpsuit
   description: A generic white jumpsuit with no rank markings.
   components:
-  - type: RollUpSleeves
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/color.rsi
     layers:
@@ -33,7 +32,6 @@
   name: grey jumpsuit
   description: A tasteful grey jumpsuit that reminds you of the good old days.
   components:
-  - type: RollUpSleeves
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/color.rsi
     layers:
@@ -65,7 +63,6 @@
   name: black jumpsuit
   description: A generic black jumpsuit with no rank markings.
   components:
-  - type: RollUpSleeves
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/color.rsi
     layers:
@@ -97,7 +94,6 @@
   name: blue jumpsuit
   description: A generic blue jumpsuit with no rank markings.
   components:
-  - type: RollUpSleeves
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/color.rsi
     layers:
@@ -129,7 +125,6 @@
   name: dark blue jumpsuit
   description: A generic dark blue jumpsuit with no rank markings.
   components:
-  - type: RollUpSleeves
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/color.rsi
     layers:
@@ -161,7 +156,6 @@
   name: teal jumpsuit
   description: A generic teal jumpsuit with no rank markings.
   components:
-  - type: RollUpSleeves
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/color.rsi
     layers:
@@ -193,7 +187,6 @@
   name: green jumpsuit
   description: A generic green jumpsuit with no rank markings.
   components:
-  - type: RollUpSleeves
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/color.rsi
     layers:
@@ -225,7 +218,6 @@
   name: dark green jumpsuit
   description: A generic dark green jumpsuit with no rank markings.
   components:
-  - type: RollUpSleeves
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/color.rsi
     layers:
@@ -257,7 +249,6 @@
   name: orange jumpsuit
   description: Don't wear this near paranoid security officers.
   components:
-  - type: RollUpSleeves
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/color.rsi
     layers:
@@ -289,7 +280,6 @@
   name: pink jumpsuit
   description: Just looking at this makes you feel <i>fabulous</i>.
   components:
-  - type: RollUpSleeves
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/color.rsi
     layers:
@@ -321,7 +311,6 @@
   name: red jumpsuit
   description: A generic red jumpsuit with no rank markings.
   components:
-  - type: RollUpSleeves
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/color.rsi
     layers:
@@ -353,7 +342,6 @@
   name: yellow jumpsuit
   description: A generic yellow jumpsuit with no rank markings.
   components:
-  - type: RollUpSleeves
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/color.rsi
     layers:
@@ -385,7 +373,6 @@
   name: purple jumpsuit
   description: A generic light purple jumpsuit with no rank markings.
   components:
-  - type: RollUpSleeves
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/color.rsi
     layers:
@@ -417,7 +404,6 @@
   name: light brown jumpsuit
   description: A generic light brown jumpsuit with no rank markings.
   components:
-  - type: RollUpSleeves
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/color.rsi
     layers:
@@ -449,7 +435,6 @@
   name: brown jumpsuit
   description: A generic brown jumpsuit with no rank markings.
   components:
-  - type: RollUpSleeves
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/color.rsi
     layers:
@@ -481,7 +466,6 @@
   name: maroon jumpsuit
   description: A generic maroon jumpsuit with no rank markings.
   components:
-  - type: RollUpSleeves
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/color.rsi
     layers:
@@ -513,7 +497,6 @@
   name: rainbow jumpsuit
   description: A multi-colored jumpsuit!
   components:
-  - type: RollUpSleeves
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/rainbow.rsi
   - type: Clothing

@@ -32,12 +32,6 @@ namespace Content.Shared.Movement.Components
         [AutoNetworkedField, ViewVariables]
         public float SprintSpeedModifier = 1.0f;
 
-        [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
-        public float SpeciesWalkSpeedModifier = 1.0f;
-
-        [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
-        public float SpeciesSprintSpeedModifier = 1.0f;
-
         [ViewVariables(VVAccess.ReadWrite)]
         private float _baseWalkSpeedVV
         {
@@ -122,8 +116,8 @@ namespace Content.Shared.Movement.Components
         public float BaseSprintSpeed { get; set; } = DefaultBaseSprintSpeed;
 
         [ViewVariables]
-        public float CurrentWalkSpeed => WalkSpeedModifier * BaseWalkSpeed * SpeciesWalkSpeedModifier;
+        public float CurrentWalkSpeed => WalkSpeedModifier * BaseWalkSpeed;
         [ViewVariables]
-        public float CurrentSprintSpeed => SprintSpeedModifier * BaseSprintSpeed * SpeciesSprintSpeedModifier;
+        public float CurrentSprintSpeed => SprintSpeedModifier * BaseSprintSpeed;
     }
 }

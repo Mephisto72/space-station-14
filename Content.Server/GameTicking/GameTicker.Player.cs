@@ -1,4 +1,3 @@
-﻿using Content.Server.Administration.Managers;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
@@ -34,7 +33,7 @@ namespace Content.Server.GameTicking
                 if (args.NewStatus != SessionStatus.Disconnected)
                 {
                     mind.Session = session;
-                    _pvsOverride.AddSessionOverride(mindId.Value, session);
+                    _pvsOverride.AddSessionOverride(GetNetEntity(mindId.Value), session);
                 }
 
                 DebugTools.Assert(mind.Session == session);
@@ -81,9 +80,7 @@ namespace Content.Server.GameTicking
                         _roundStartTime = _gameTiming.CurTime + LobbyDuration;
                     }
 
-                    RaiseLocalEvent(new PlayerConnectEvent(session));
-
-                        break;
+                    break;
                 }
 
                 case SessionStatus.InGame:
@@ -234,13 +231,5 @@ namespace Content.Server.GameTicking
         {
             PlayerSession = playerSession;
         }
-    }
-    // 🌟Starlight🌟
-    public sealed class PlayerConnectEvent : EntityEventArgs
-    {
-        public readonly ICommonSession PlayerSession;
-
-        public PlayerConnectEvent(ICommonSession playerSession) 
-            => PlayerSession = playerSession;
     }
 }

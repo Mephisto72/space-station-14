@@ -12,7 +12,6 @@ using Content.Shared.Shuttles.Components;
 using Content.Shared.Localizations;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
-using Content.Server.NPC.HTN;
 
 namespace Content.Server.Salvage;
 
@@ -46,11 +45,6 @@ public sealed partial class SalvageSystem
         while (query.MoveNext(out var uid, out _, out var mobState, out var mobXform))
         {
             if (mobXform.MapUid != xform.MapUid)
-                continue;
-
-            // 🌟Starlight🌟
-            // ignore bots
-            if (TryComp<HTNComponent>(uid, out _))
                 continue;
 
             // Don't count unidentified humans (loot) or anyone you murdered so you can still maroon them once dead.
@@ -110,7 +104,7 @@ public sealed partial class SalvageSystem
 
         Announce(args.MapUid, Loc.GetString("salvage-expedition-announcement-countdown-minutes", ("duration", (component.EndTime - _timing.CurTime).Minutes)));
 
-        var directionLocalization = ContentLocalizationManager.FormatDirection(component.DungeonLocation.GetDir()).ToLower();
+         var directionLocalization = ContentLocalizationManager.FormatDirection(component.DungeonLocation.GetDir()).ToLower();
 
         if (component.DungeonLocation != Vector2.Zero)
             Announce(args.MapUid, Loc.GetString("salvage-expedition-announcement-dungeon", ("direction", directionLocalization)));
@@ -150,7 +144,7 @@ public sealed partial class SalvageSystem
         while (query.MoveNext(out var uid, out var comp))
         {
             var remaining = comp.EndTime - _timing.CurTime;
-            var audioLength = _audio.GetAudioLength(comp.SelectedSong);
+            var audioLength = _audio.GetAudioLength(comp.SelectedSong.Path.ToString());
 
             if (comp.Stage < ExpeditionStage.FinalCountdown && remaining < TimeSpan.FromSeconds(45))
             {
@@ -176,11 +170,11 @@ public sealed partial class SalvageSystem
             // Auto-FTL out any shuttles
             else if (remaining < TimeSpan.FromSeconds(_shuttle.DefaultStartupTime) + TimeSpan.FromSeconds(0.5))
             {
-                var ftlTime = (float)remaining.TotalSeconds;
+                var ftlTime = (float) remaining.TotalSeconds;
 
                 if (remaining < TimeSpan.FromSeconds(_shuttle.DefaultStartupTime))
                 {
-                    ftlTime = MathF.Max(0, (float)remaining.TotalSeconds - 0.5f);
+                    ftlTime = MathF.Max(0, (float) remaining.TotalSeconds - 0.5f);
                 }
 
                 ftlTime = MathF.Min(ftlTime, _shuttle.DefaultStartupTime);

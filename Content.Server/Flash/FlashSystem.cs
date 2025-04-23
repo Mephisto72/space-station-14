@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Flash.Components;
 using Content.Shared.Flash.Components;
 using Content.Server.Light.EntitySystems;
@@ -21,7 +21,6 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Random;
 using InventoryComponent = Content.Shared.Inventory.InventoryComponent;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server.Flash
 {
@@ -40,8 +39,6 @@ namespace Content.Server.Flash
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
 
-        private static readonly ProtoId<TagPrototype> TrashTag = "Trash";
-
         public override void Initialize()
         {
             base.Initialize();
@@ -53,7 +50,6 @@ namespace Content.Server.Flash
             SubscribeLocalEvent<FlashImmunityComponent, FlashAttemptEvent>(OnFlashImmunityFlashAttempt);
             SubscribeLocalEvent<PermanentBlindnessComponent, FlashAttemptEvent>(OnPermanentBlindnessFlashAttempt);
             SubscribeLocalEvent<TemporaryBlindnessComponent, FlashAttemptEvent>(OnTemporaryBlindnessFlashAttempt);
-            SubscribeLocalEvent<FlashModifierComponent, FlashAttemptEvent>(OnModifierFlashAttempt);
         }
 
         private void OnFlashMeleeHit(EntityUid uid, FlashComponent comp, MeleeHitEvent args)
@@ -98,7 +94,7 @@ namespace Content.Server.Flash
             if (_charges.IsEmpty(uid, charges))
             {
                 _appearance.SetData(uid, FlashVisuals.Burnt, true);
-                _tag.AddTag(uid, TrashTag);
+                _tag.AddTag(uid, "Trash");
                 _popup.PopupEntity(Loc.GetString("flash-component-becomes-empty"), user);
             }
 
@@ -125,9 +121,6 @@ namespace Content.Server.Flash
 
             if (attempt.Cancelled)
                 return;
-            
-            if (attempt.Multiplier != 1f)
-                flashDuration *= attempt.Multiplier;
 
             // don't paralyze, slowdown or convert to rev if the target is immune to flashes
             if (!_statusEffectsSystem.TryAddStatusEffect<FlashedComponent>(target, FlashedKey, TimeSpan.FromSeconds(flashDuration / 1000f), true))
@@ -215,8 +208,6 @@ namespace Content.Server.Flash
         {
             args.Cancel();
         }
-        
-        private void OnModifierFlashAttempt(EntityUid uid, FlashModifierComponent component, FlashAttemptEvent args) => args.Multiplier = component.Modifier;
     }
 
     /// <summary>
@@ -228,14 +219,12 @@ namespace Content.Server.Flash
         public readonly EntityUid Target;
         public readonly EntityUid? User;
         public readonly EntityUid? Used;
-        public float Multiplier;
 
-        public FlashAttemptEvent(EntityUid target, EntityUid? user, EntityUid? used, float multiplier = 1f)
+        public FlashAttemptEvent(EntityUid target, EntityUid? user, EntityUid? used)
         {
             Target = target;
             User = user;
             Used = used;
-            Multiplier = multiplier;
         }
     }
     /// <summary>

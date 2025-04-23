@@ -1,4 +1,4 @@
-﻿using Content.Client.Gameplay;
+using Content.Client.Gameplay;
 using Content.Client.Hands.Systems;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Hands.Controls;
@@ -290,19 +290,13 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
         var button = new HandButton(handName, location);
         button.StoragePressed += StorageActivate;
         button.Pressed += HandPressed;
-        var uiLocation = location.GetUILocation(); // 🌟Starlight🌟
 
         if (!_handLookup.TryAdd(handName, button))
             throw new Exception("Tried to add hand with duplicate name to UI. Name:" + handName);
 
         if (HandsGui != null)
         {
-            // 🌟Starlight🌟  start
-            if (uiLocation == HandUILocation.Functional)
-                HandsGui.FunctionalHandContainer.AddButton(button);
-            else
-            // 🌟Starlight🌟  end
-                HandsGui.HandContainer.AddButton(button);
+            HandsGui.HandContainer.AddButton(button);
         }
         else
         {
@@ -312,7 +306,7 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
         // If we don't have a status for this hand type yet, set it.
         // This means we have status filled by default in most scenarios,
         // otherwise the user'd need to switch hands to "activate" the hands the first time.
-        if (uiLocation == HandUILocation.Left)
+        if (location.GetUILocation() == HandUILocation.Left)
             _statusHandLeft ??= button;
         else
             _statusHandRight ??= button;

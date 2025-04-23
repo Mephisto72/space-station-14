@@ -23,7 +23,6 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Database;
 using Content.Shared.Doors.Components;
-using Content.Shared.Electrocution;
 using Content.Shared.Hands.Components;
 using Content.Shared.Inventory;
 using Content.Shared.PDA;
@@ -44,7 +43,6 @@ namespace Content.Server.Administration.Systems;
 public sealed partial class AdminVerbSystem
 {
     [Dependency] private readonly DoorSystem _door = default!;
-    [Dependency] private readonly SharedElectrocutionSystem _electrocution = default!;
     [Dependency] private readonly AirlockSystem _airlockSystem = default!;
     [Dependency] private readonly StackSystem _stackSystem = default!;
     [Dependency] private readonly SharedAccessSystem _accessSystem = default!;
@@ -89,26 +87,6 @@ public sealed partial class AdminVerbSystem
                     Priority = (int) (bolts.BoltsDown ? TricksVerbPriorities.Unbolt : TricksVerbPriorities.Bolt),
                 };
                 args.Verbs.Add(bolt);
-            }
-            
-            if (TryComp<ElectrifiedComponent>(args.Target, out var electrified) && HasComp<DoorComponent>(args.Target))
-            {
-                Verb electrify = new()
-                {
-                    Text = electrified.Enabled ? "Unelectrify" : "Electrify",
-                    Category = VerbCategory.Tricks,
-                    Icon =  new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/smite.svg.192dpi.png")),
-                    Act = () =>
-                    {
-                        _electrocution.SetElectrified((args.Target, electrified), !electrified.Enabled);
-                    },
-                    Impact = LogImpact.Medium,
-                    Message = Loc.GetString(electrified.Enabled
-                        ? "admin-trick-unelectrify-description"
-                        : "admin-trick-electrify-description"),
-                    Priority = (int) (electrified.Enabled ? TricksVerbPriorities.Unelectrify : TricksVerbPriorities.Electrify),
-                };
-                args.Verbs.Add(electrify);
             }
 
             if (TryComp<AirlockComponent>(args.Target, out var airlockComp))
@@ -659,7 +637,7 @@ public sealed partial class AdminVerbSystem
         {
             if (_adminManager.HasAdminFlag(player, AdminFlags.Mapping))
             {
-                if (_map.IsPaused(map.MapId))
+                if (_mapManager.IsMapPaused(map.MapId))
                 {
                     Verb unpauseMap = new()
                     {
@@ -668,7 +646,7 @@ public sealed partial class AdminVerbSystem
                         Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/AdminActions/play.png")),
                         Act = () =>
                         {
-                            _map.SetPaused(map.MapId, false);
+                            _mapManager.SetMapPaused(map.MapId, false);
                         },
                         Impact = LogImpact.Extreme,
                         Message = Loc.GetString("admin-trick-unpause-map-description"),
@@ -685,7 +663,7 @@ public sealed partial class AdminVerbSystem
                         Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/AdminActions/pause.png")),
                         Act = () =>
                         {
-                            _map.SetPaused(map.MapId, true);
+                            _mapManager.SetMapPaused(map.MapId, true);
                         },
                         Impact = LogImpact.Extreme,
                         Message = Loc.GetString("admin-trick-pause-map-description"),
@@ -874,35 +852,33 @@ public sealed partial class AdminVerbSystem
     {
         Bolt = 0,
         Unbolt = -1,
-        Electrify = -2,
-        Unelectrify = -3,
-        EmergencyAccessOn = -4,
-        EmergencyAccessOff = -5,
-        MakeIndestructible = -6,
-        MakeVulnerable = -7,
-        BlockUnanchoring = -8,
-        RefillBattery = -9,
-        DrainBattery = -10,
-        RefillOxygen = -11,
-        RefillNitrogen = -12,
-        RefillPlasma = -13,
-        SendToTestArena = -14,
-        GrantAllAccess = -15,
-        RevokeAllAccess = -16,
-        Rejuvenate = -17,
-        AdjustStack = -18,
-        FillStack = -19,
-        Rename = -20,
-        Redescribe = -21,
-        RenameAndRedescribe = -22,
-        BarJobSlots = -23,
-        LocateCargoShuttle = -24,
-        InfiniteBattery = -25,
-        HaltMovement = -26,
-        Unpause = -27,
-        Pause = -28,
-        SnapJoints = -29,
-        MakeMinigun = -30,
-        SetBulletAmount = -31,
+        EmergencyAccessOn = -2,
+        EmergencyAccessOff = -3,
+        MakeIndestructible = -4,
+        MakeVulnerable = -5,
+        BlockUnanchoring = -6,
+        RefillBattery = -7,
+        DrainBattery = -8,
+        RefillOxygen = -9,
+        RefillNitrogen = -10,
+        RefillPlasma = -11,
+        SendToTestArena = -12,
+        GrantAllAccess = -13,
+        RevokeAllAccess = -14,
+        Rejuvenate = -15,
+        AdjustStack = -16,
+        FillStack = -17,
+        Rename = -18,
+        Redescribe = -19,
+        RenameAndRedescribe = -20,
+        BarJobSlots = -21,
+        LocateCargoShuttle = -22,
+        InfiniteBattery = -23,
+        HaltMovement = -24,
+        Unpause = -25,
+        Pause = -26,
+        SnapJoints = -27,
+        MakeMinigun = -28,
+        SetBulletAmount = -29,
     }
 }

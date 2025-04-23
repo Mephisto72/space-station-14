@@ -8,8 +8,6 @@
     contents:
       - id: ClothingOuterArmorBulletproof
         amount: 3
-      - id: ClothingHeadHelmetBulletProof
-        amount: 3
 
 - type: entity
   id: CrateSecurityHelmet

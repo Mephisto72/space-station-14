@@ -6,7 +6,6 @@
   name: revenant
   description: A spooky ghostie.
   components:
-  - type: ThermalVision
   - type: Input
     context: "ghost"
   - type: Spectral
@@ -73,10 +72,11 @@
     - StolenEssence
   - type: RandomMetadata
     nameSegments:
-    - NamesRevenantType
-    - NamesRevenantAdjective
-    - NamesRevenantTheme
-    nameFormat: name-format-revenant
+    - The
+    - RevenantType
+    - of
+    - RevenantAdjective
+    - RevenantTheme
   - type: Speech
     speechVerb: Ghost
   - type: Reactive

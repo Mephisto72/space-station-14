@@ -1,5 +1,3 @@
-using Content.Shared.Starlight.Antags.Abductor;
-using Content.Shared.Silicons.StationAi;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.ActionBlocker;
@@ -520,8 +518,7 @@ public abstract class SharedActionsSystem : EntitySystem
                 break;
             }
             case InstantActionComponent instantAction:
-                var hasNoSpecificComponents = !HasComp<StationAiOverlayComponent>(user) && !HasComp<AbductorScientistComponent>(user) && !HasComp<AbductorAgentComponent>(user);
-                if (action.CheckCanInteract && !_actionBlockerSystem.CanInteract(user, null) && hasNoSpecificComponents)
+                if (action.CheckCanInteract && !_actionBlockerSystem.CanInteract(user, null))
                     return;
 
                 _adminLogger.Add(LogType.Action,
@@ -571,8 +568,7 @@ public abstract class SharedActionsSystem : EntitySystem
         if (_whitelistSystem.IsBlacklistPass(blacklist, target))
             return false;
 
-        var hasNoSpecificComponents = !HasComp<StationAiOverlayComponent>(user) && !HasComp<AbductorScientistComponent>(user) && !HasComp<AbductorAgentComponent>(user);
-        if (checkCanInteract && !_actionBlockerSystem.CanInteract(user, target) && hasNoSpecificComponents)
+        if (checkCanInteract && !_actionBlockerSystem.CanInteract(user, target))
             return false;
 
         if (user == target)
@@ -617,18 +613,13 @@ public abstract class SharedActionsSystem : EntitySystem
         if (entityCoordinates is not { } coords)
             return false;
 
-        var hasNoSpecificComponents = !HasComp<StationAiOverlayComponent>(user) && !HasComp<AbductorScientistComponent>(user) && !HasComp<AbductorAgentComponent>(user);
-        if (checkCanInteract && !_actionBlockerSystem.CanInteract(user, null) && hasNoSpecificComponents)
+        if (checkCanInteract && !_actionBlockerSystem.CanInteract(user, null))
             return false;
 
         if (!checkCanAccess)
         {
             // even if we don't check for obstructions, we may still need to check the range.
             var xform = Transform(user);
-
-            // 🌟Starlight🌟 - Allow the eye to interact across maps.
-            if (TryComp<EyeComponent>(user, out var eye) && eye.Target is not null)
-                xform = Transform(eye.Target.Value);
 
             if (xform.MapID != coords.GetMapId(EntityManager))
                 return false;
@@ -1009,25 +1000,7 @@ public abstract class SharedActionsSystem : EntitySystem
         if (action.Temporary)
             QueueDel(actionId.Value);
     }
-    public EntityUid[] HideActions(EntityUid performer, ActionsComponent? comp = null)
-    {
-        if (!Resolve(performer, ref comp, false))
-            return [];
 
-        var actions = comp.Actions.ToArray();
-        comp.Actions.Clear();
-        Dirty(performer, comp);
-        return actions;
-    }
-    public void UnHideActions(EntityUid performer, EntityUid[] actions, ActionsComponent? comp = null)
-    {
-        if (!Resolve(performer, ref comp, false))
-            return;
-
-        foreach (var action in actions)
-            comp.Actions.Add(action);
-        Dirty(performer, comp);
-    }
     /// <summary>
     /// This method gets called after an action got removed.
     /// </summary>

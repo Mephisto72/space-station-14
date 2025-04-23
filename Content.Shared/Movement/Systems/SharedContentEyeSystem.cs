@@ -1,5 +1,4 @@
 using System.Numerics;
-using Content.Shared.Starlight;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Camera;

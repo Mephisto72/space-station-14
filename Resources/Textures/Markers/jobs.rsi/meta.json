@@ -11,12 +11,6 @@
       "name": "green"
     },
     {
-      "name": "jobicon"
-    },
-    {
-        "name": "assistant"
-    },
-    {
       "name": "ai"
     },
     {
@@ -149,6 +143,9 @@
       "name": "paramedic"
     },
     {
+      "name": "passenger"
+    },
+    {
       "name": "prisoner"
     },
     {
@@ -173,7 +170,7 @@
       "name": "scientist"
     },
     {
-      "name": "security_cadet"
+      "name": "security_cadet" 
     },
     {
       "name": "security_officer"

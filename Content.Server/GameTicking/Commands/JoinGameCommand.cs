@@ -1,6 +1,4 @@
 using Content.Server.Administration.Managers;
-using Content.Server.Ghost.Roles;
-using Content.Server.Preferences.Managers;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
@@ -19,7 +17,6 @@ namespace Content.Server.GameTicking.Commands
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly IServerPreferencesManager _prefsManager = default!;
 
         public string Command => "joingame";
         public string Description => "";
@@ -49,17 +46,9 @@ namespace Content.Server.GameTicking.Commands
 
             if (ticker.PlayerGameStatuses.TryGetValue(player.UserId, out var status) && status == PlayerGameStatus.JoinedGame)
             {
-                //🌟Starlight🌟 start
-                var newLifeSystem = _entManager.System<NewLifeSystem>();
-                var slot = _prefsManager.GetPreferences(player.UserId).SelectedCharacterIndex; 
-
-                if (!newLifeSystem.SlotIsAvailable(player.UserId, slot))
-                {
-                    Logger.InfoS("security", $"{player.Name} ({player.UserId}) attempted to latejoin while in-game.");
-                    shell.WriteError($"{player.Name} is not in the lobby.   This incident will be reported.");
-                    return;
-                }
-                //🌟Starlight🌟 end
+                Logger.InfoS("security", $"{player.Name} ({player.UserId}) attempted to latejoin while in-game.");
+                shell.WriteError($"{player.Name} is not in the lobby.   This incident will be reported.");
+                return;
             }
 
             if (ticker.RunLevel == GameRunLevel.PreRoundLobby)

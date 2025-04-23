@@ -1,5 +1,4 @@
 using Content.Server.Explosion.Components;
-using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Examine;
 using Content.Shared.Explosion.Components;
 using Content.Shared.Interaction.Events;
@@ -41,7 +40,7 @@ public sealed partial class TriggerSystem
     /// </summary>
     private void OnGetAltVerbs(EntityUid uid, OnUseTimerTriggerComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
-        if (!args.CanInteract || !args.CanAccess || args.Hands == null || HasComp<PacifiedComponent>(args.User))
+        if (!args.CanInteract || !args.CanAccess || args.Hands == null)
             return;
 
         if (component.UseVerbInstead)
@@ -156,7 +155,7 @@ public sealed partial class TriggerSystem
 
     private void OnTimerUse(EntityUid uid, OnUseTimerTriggerComponent component, UseInHandEvent args)
     {
-        if (args.Handled || HasComp<AutomatedTimerComponent>(uid) || component.UseVerbInstead || HasComp<PacifiedComponent>(args.User))
+        if (args.Handled || HasComp<AutomatedTimerComponent>(uid) || component.UseVerbInstead)
             return;
 
         if (component.DoPopup)

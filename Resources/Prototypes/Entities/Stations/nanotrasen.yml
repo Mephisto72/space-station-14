@@ -25,9 +25,6 @@
     - BaseStationSiliconLawCrewsimov
     - BaseStationAllEventsEligible
     - BaseStationNanotrasen
-    - BaseStationDeliveries
-    - BaseStationCryoTeleportation
-    - BaseStationGammaWeaponry
   categories: [ HideSpawnMenu ]
   components:
     - type: Transform
@@ -38,7 +35,6 @@
     - BaseStation
     - BaseStationAlertLevels
     - BaseStationNanotrasen
-    - BaseStationCryoTeleportation
   categories: [ HideSpawnMenu ]
   components:
     - type: Transform

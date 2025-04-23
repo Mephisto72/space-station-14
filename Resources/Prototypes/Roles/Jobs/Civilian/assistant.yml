@@ -1,31 +1,19 @@
 - type: job
-  id: Assistant
-  name: job-name-assistant
-  description: job-description-assistant
-  playTimeTracker: JobPassenger
-  startingGear: AssistantGear
-  icon: "JobIconAssistant"
-  supervisors: job-supervisors-everyone
-  access:
-  - Maintenance
-
-- type: job # Just ignore it. It’s a database workaround.
   id: Passenger
-  hidden: true
-  name: job-name-assistant
-  description: job-description-assistant
-  playTimeTracker: JobAssistant 
-  startingGear: AssistantGear
-  icon: "JobIconAssistant"
+  name: job-name-passenger
+  description: job-description-passenger
+  playTimeTracker: JobPassenger
+  startingGear: PassengerGear
+  icon: "JobIconPassenger"
   supervisors: job-supervisors-everyone
   access:
   - Maintenance
 
 - type: startingGear
-  id: AssistantGear
+  id: PassengerGear
   equipment:
-    id: AssistantPDA
-    ears: ClothingHeadsetAssistant
+    id: PassengerPDA
+    ears: ClothingHeadsetGrey
   #storage:
     #back:
     #- Stuff

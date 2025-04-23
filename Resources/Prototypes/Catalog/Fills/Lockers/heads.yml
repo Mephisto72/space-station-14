@@ -2,7 +2,6 @@
   id: LockerFillQuarterMaster
   table: !type:AllSelector
     children:
-    - id: ClothingNeckCloakQmElite
     - id: BoxEncryptionKeyCargo
     - id: BoxFolderQmClipboard
     - id: CargoBountyComputerCircuitboard
@@ -19,7 +18,6 @@
     - id: RubberStampDenied
     - id: RubberStampQm
     - id: AstroNavCartridge
-    - id: MailTeleporterMachineCircuitboard
 
 - type: entity
   id: LockerQuarterMasterFilled
@@ -36,7 +34,6 @@
   id: LockerFillCaptainNoLaser
   table: !type:AllSelector
     children:
-    - id: ClothingNeckCloakCapElite
     - id: CaptainIDCard
     - id: CigarGoldCase
       prob: 0.25
@@ -54,7 +51,6 @@
     - id: SpaceCash1000
     - id: WeaponDisabler
     - id: ClothingEyesGlassesCommand
-    - id: ClothingEyesHudCommand
 
 # No laser table + Laser table
 - type: entityTable
@@ -116,9 +112,8 @@
   id: LockerFillHeadOfPersonnel
   table: !type:AllSelector
     children:
-    - id: ClothingNeckCloakHopElite
     - id: AccessConfigurator
-    - id: BoxEncryptionKeyAssistant
+    - id: BoxEncryptionKeyPassenger
     - id: BoxEncryptionKeyService
     - id: BoxHeadset
     - id: BoxID
@@ -129,7 +124,7 @@
       # Yes they do fuck you.
     - id: ClothingBackpackIan
       prob: 0.5
-    - id: ClothingHeadsetHoP
+    - id: ClothingHeadsetCommand
     - id: ClothingNeckGoldmedal
     - id: DoorRemoteService
     - id: HoPIDCard
@@ -155,7 +150,6 @@
   id: LockerFillChiefEngineerNoHardsuit
   table: !type:AllSelector
     children:
-    - id: ClothingNeckCloakCeElite
     - id: AccessConfigurator
     - id: BoxEncryptionKeyEngineering
     - id: CigarCase
@@ -211,7 +205,6 @@
   id: LockerFillChiefMedicalOfficerNoHardsuit
   table: !type:AllSelector
     children:
-    - id: ClothingCloakCmoElite
     - id: BoxEncryptionKeyMedical
     - id: ClothingBackpackDuffelSurgeryFilled
     - id: ClothingCloakCmo
@@ -268,7 +261,6 @@
   id: LockerFillResearchDirectorNoHardsuit
   table: !type:AllSelector
     children:
-    - id: ClothingNeckCloakRdElite
     - id: Intellicard
     - id: BoxEncryptionKeyScience
     - id: CircuitImprinterMachineCircuitboard
@@ -320,15 +312,13 @@
   id: LockerFillHeadOfSecurityNoHardsuit
   table: !type:AllSelector
     children:
-    - id: ClothingNeckCloakHosElite
-    - id: WeaponEnergyShotgun    
+    - id: WeaponEnergyShotgun
     - id: BookSpaceLaw
     - id: BoxEncryptionKeySecurity
     - id: CigarGoldCase
       prob: 0.50
     - id: ClothingBeltSecurityFilled
     - id: ClothingEyesGlassesSecurity
-    - id: ClothingEyesHudSecurity
     - id: ClothingHeadsetAltSecurity
     - id: ClothingMaskNeckGaiter
     - id: ClothingOuterCoatHoSTrench
@@ -350,7 +340,6 @@
     - id: ClothingOuterHardsuitSecurityRed
     - id: JetpackSecurityFilled
     - id: OxygenTankFilled
-    - id: ClothingShoesBootsMagSec
 
 # No hardsuit locker
 - type: entity

@@ -6,7 +6,6 @@ using Robust.Shared.Map;
 using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
-using Content.Shared.Shuttles.Components; //starlight
 
 namespace Content.Server.Shuttles.Systems;
 

@@ -1,10 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Localizations;
-using Content.Shared.Starlight;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Preferences;
 using JetBrains.Annotations;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
@@ -20,18 +18,12 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
     public TimeSpan Time;
 
     public override bool Check(IEntityManager entManager,
-        ICommonSession? player,
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan> playTimes,
         [NotNullWhen(false)] out FormattedMessage? reason)
     {
         reason = new FormattedMessage();
-
-        //🌟Starlight🌟 start
-        if (player is not null && IoCManager.Resolve<ISharedPlayersRoleManager>().IsAllRolesAvailable(player))
-            return true;
-        //🌟Starlight🌟 end
 
         var overallTime = playTimes.GetValueOrDefault(PlayTimeTrackingShared.TrackerOverall);
         var overallDiffSpan = Time - overallTime;

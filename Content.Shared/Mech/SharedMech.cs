@@ -7,9 +7,7 @@ namespace Content.Shared.Mech;
 public enum MechVisuals : byte
 {
     Open, //whether or not it's open and has a rider
-    Broken, //if it broke and no longer works.
-    Light, //if lights are enabled
-    Siren //if siren are enabled
+    Broken //if it broke and no longer works.
 }
 
 [Serializable, NetSerializable]
@@ -21,16 +19,7 @@ public enum MechAssemblyVisuals : byte
 [Serializable, NetSerializable]
 public enum MechVisualLayers : byte
 {
-    Base,
-    Light,
-    Siren
-}
-
-[Serializable, NetSerializable]
-public enum EquipmentType : byte
-{
-    Active,
-    Passive
+    Base
 }
 
 /// <summary>
@@ -70,36 +59,4 @@ public sealed partial class MechOpenUiEvent : InstantActionEvent
 
 public sealed partial class MechEjectPilotEvent : InstantActionEvent
 {
-}
-
-public sealed partial class MechToggleInternalsEvent : InstantActionEvent
-{
-}
-
-public sealed partial class MechToggleSirensEvent : InstantActionEvent
-{
-}
-
-public sealed partial class MechToggleThrustersEvent : InstantActionEvent
-{
-}
-
-public sealed partial class MechToggleNightVisionEvent : InstantActionEvent
-{
-}
-
-[ByRefEvent]
-public readonly record struct BeforePilotEjectEvent(EntityUid Mech, EntityUid Pilot)
-{
-    public readonly EntityUid Mech = Mech;
-
-    public readonly EntityUid Pilot = Pilot;
-}
-
-[ByRefEvent]
-public readonly record struct BeforePilotInsertEvent(EntityUid Mech, EntityUid Pilot)
-{
-    public readonly EntityUid Mech = Mech;
-
-    public readonly EntityUid Pilot = Pilot;
 }

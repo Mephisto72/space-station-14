@@ -1,6 +1,5 @@
 using System.Numerics;
 using Content.Server.NPC.Components;
-using Content.Shared.Buckle.Components;
 using Content.Shared.CombatMode;
 using Content.Shared.NPC;
 using Robust.Shared.Map;
@@ -60,9 +59,6 @@ public sealed partial class NPCCombatSystem
     private void Attack(EntityUid uid, NPCMeleeCombatComponent component, TimeSpan curTime, EntityQuery<PhysicsComponent> physicsQuery, EntityQuery<TransformComponent> xformQuery)
     {
         component.Status = CombatStatus.Normal;
-        
-        if (TryComp<BuckleComponent>(uid, out var buckle) && buckle.BuckledTo != null)
-            _buckle.Unbuckle((uid, buckle), uid);
 
         if (!_melee.TryGetWeapon(uid, out var weaponUid, out var weapon))
         {

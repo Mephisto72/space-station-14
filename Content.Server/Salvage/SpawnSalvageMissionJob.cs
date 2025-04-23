@@ -119,7 +119,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
 
         // Setup mission configs
         // As we go through the config the rating will deplete so we'll go for most important to least important.
-        var difficultyId = _missionParams.Difficulty;
+        var difficultyId = "Moderate";
         var difficultyProto = _prototypeManager.Index<SalvageDifficultyPrototype>(difficultyId);
 
         var mission = _entManager.System<SharedSalvageSystem>()
@@ -247,7 +247,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
             await SpawnRandomEntry(grid, entry, dungeon, random);
         }
 
-        var allLoot = _prototypeManager.Index<SalvageLootPrototype>(difficultyProto.LootPrototypeId);
+        var allLoot = _prototypeManager.Index<SalvageLootPrototype>(SharedSalvageSystem.ExpeditionsLootProto);
         var lootBudget = difficultyProto.LootBudget;
 
         foreach (var rule in allLoot.LootRules)

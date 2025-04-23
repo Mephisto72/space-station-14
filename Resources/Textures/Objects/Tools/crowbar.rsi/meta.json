@@ -19,23 +19,6 @@
       "name": "icon"
     },
     {
-      "name": "abductor",
-      "delays": [
-        [
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1
-        ]
-      ]
-    },
-    {
       "name": "equipped-BELT",
       "directions": 4
     },

@@ -1,4 +1,3 @@
-﻿using Content.Client._Starlight.Managers;
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
@@ -28,7 +27,6 @@ using Content.Shared.Localizations;
 using Robust.Client;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
-using Robust.Client.Player;
 using Robust.Client.Replays.Loading;
 using Robust.Client.State;
 using Robust.Client.UserInterface;
@@ -49,7 +47,6 @@ namespace Content.Client.Entry
         [Dependency] private readonly IComponentFactory _componentFactory = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IClientAdminManager _adminManager = default!;
-        [Dependency] private readonly IClientPlayerRolesManager _clientPlayerManager = default!; //🌟Starlight🌟
         [Dependency] private readonly IParallaxManager _parallaxManager = default!;
         [Dependency] private readonly IConfigurationManager _configManager = default!;
         [Dependency] private readonly IStylesheetManager _stylesheetManager = default!;
@@ -127,7 +124,6 @@ namespace Content.Client.Entry
 
             _componentFactory.GenerateNetIds();
             _adminManager.Initialize();
-            _clientPlayerManager.Initialize(); //🌟Starlight🌟
             _screenshotHook.Initialize();
             _fullscreenHook.Initialize();
             _changelogManager.Initialize();

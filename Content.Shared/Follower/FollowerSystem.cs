@@ -1,6 +1,4 @@
-using System.Linq;
 using System.Numerics;
-using Content.Shared.Starlight;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Database;
 using Content.Shared.Follower.Components;
@@ -19,7 +17,6 @@ using Robust.Shared.Network;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Follower;
@@ -34,8 +31,6 @@ public sealed class FollowerSystem : EntitySystem
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly ISharedAdminManager _adminManager = default!;
 
-    private static readonly ProtoId<TagPrototype> ForceableFollowTag = "ForceableFollow";
-
     public override void Initialize()
     {
         base.Initialize();
@@ -49,8 +44,8 @@ public sealed class FollowerSystem : EntitySystem
         SubscribeLocalEvent<FollowedComponent, ComponentGetStateAttemptEvent>(OnFollowedAttempt);
         SubscribeLocalEvent<FollowerComponent, GotEquippedHandEvent>(OnGotEquippedHand);
         SubscribeLocalEvent<FollowedComponent, EntityTerminatingEvent>(OnFollowedTerminating);
-        SubscribeLocalEvent<BeforeSerializationEvent>(OnBeforeSave);
         SubscribeLocalEvent<FollowedComponent, PolymorphedEvent>(OnFollowedPolymorphed);
+        SubscribeLocalEvent<BeforeSaveEvent>(OnBeforeSave);
     }
 
     private void OnFollowedAttempt(Entity<FollowedComponent> ent, ref ComponentGetStateAttemptEvent args)
@@ -68,16 +63,10 @@ public sealed class FollowerSystem : EntitySystem
         }
     }
 
-    private void OnBeforeSave(BeforeSerializationEvent ev)
+    private void OnBeforeSave(BeforeSaveEvent ev)
     {
-        // Some followers will not be map savable. This ensures that maps don't get saved with some entities that have
-        // empty/invalid followers, by just stopping any following happening on the map being saved.
-        // I hate this so much.
-        // TODO WeakEntityReference
-        // We need some way to store entity references in a way that doesn't imply that the entity still exists.
-        // Then we wouldn't have to deal with this shit.
-
-        var maps = ev.Entities.Select(x => Transform(x).MapUid).ToHashSet();
+        // Some followers will not be map savable. This ensures that maps don't get saved with empty/invalid
+        // followers, but just stopping any following on the map being saved.
 
         var query = AllEntityQuery<FollowerComponent, TransformComponent, MetaDataComponent>();
         while (query.MoveNext(out var uid, out var follower, out var xform, out var meta))
@@ -85,7 +74,7 @@ public sealed class FollowerSystem : EntitySystem
             if (meta.EntityPrototype == null || meta.EntityPrototype.MapSavable)
                 continue;
 
-            if (!maps.Contains(xform.MapUid))
+            if (xform.MapUid != ev.Map)
                 continue;
 
             StopFollowingEntity(uid, follower.Following);
@@ -110,7 +99,7 @@ public sealed class FollowerSystem : EntitySystem
             ev.Verbs.Add(verb);
         }
 
-        if (_tagSystem.HasTag(ev.Target, ForceableFollowTag))
+        if (_tagSystem.HasTag(ev.Target, "ForceableFollow"))
         {
             if (!ev.CanAccess || !ev.CanInteract)
                 return;

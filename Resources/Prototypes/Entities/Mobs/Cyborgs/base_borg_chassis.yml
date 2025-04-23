@@ -6,7 +6,6 @@
   save: false
   abstract: true
   components:
-  - type: TextToSpeech
   - type: Reactive
     groups:
       Acidic: [Touch]
@@ -156,8 +155,6 @@
   - type: Vocal
     sounds:
       Unsexed: UnisexSilicon
-    screamAction: null
-  - type: DamagedSiliconAccent
   - type: UnblockableSpeech
   - type: FootstepModifier
     footstepSoundCollection:
@@ -237,7 +234,6 @@
     - DoorBumpOpener
     - FootstepSound
     - CanPilot
-    - Unimplantable
   - type: Emoting
   - type: GuideHelp
     guides:
@@ -253,7 +249,6 @@
   abstract: true
   id: BaseBorgTransponder
   components:
-  - type: TextToSpeech
   - type: BorgTransponder
   - type: DeviceNetwork
     deviceNetId: Wireless
@@ -284,10 +279,9 @@
   parent: [BaseBorgChassis, BaseBorgTransponder]
   abstract: true
   components:
-  - type: TextToSpeech
   - type: RandomMetadata
     nameSegments:
-    - NamesBorg
+      - names_borg
   - type: NpcFactionMember
     factions:
     - NanoTrasen
@@ -295,8 +289,6 @@
     enabled: false
     groups:
     - AllAccess
-    tags:
-    - Borg
   - type: AccessReader
     access: [["Command"], ["Research"]]
   - type: ShowJobIcons
@@ -309,7 +301,6 @@
   parent: BaseBorgChassis
   abstract: true
   components:
-  - type: TextToSpeech
   - type: NpcFactionMember
     factions:
     - Syndicate
@@ -333,8 +324,6 @@
   - type: MovementAlwaysTouching
   - type: Speech
     speechSounds: SyndieBorg
-    allowedEmotes:
-    - Laugh
   - type: Vocal
     sounds:
       Unsexed: UnisexSiliconSyndicate

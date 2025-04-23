@@ -1,7 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Preferences;
-using Robust.Shared.Network;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
@@ -12,7 +10,6 @@ public static class JobRequirements
 {
     public static bool TryRequirementsMet(
         JobPrototype job,
-        ICommonSession? player,
         IReadOnlyDictionary<string, TimeSpan> playTimes,
         [NotNullWhen(false)] out FormattedMessage? reason,
         IEntityManager entManager,
@@ -27,7 +24,7 @@ public static class JobRequirements
 
         foreach (var requirement in requirements)
         {
-            if (!requirement.Check(entManager, player, protoManager, profile, playTimes, out reason))
+            if (!requirement.Check(entManager, protoManager, profile, playTimes, out reason))
                 return false;
         }
 
@@ -47,7 +44,6 @@ public abstract partial class JobRequirement
 
     public abstract bool Check(
         IEntityManager entManager,
-        ICommonSession? player,
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan> playTimes,

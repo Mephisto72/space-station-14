@@ -130,6 +130,3 @@ tiles-astro-ice = astro-ice
 tiles-astro-snow = astro-snow
 tiles-astro-asteroid-sand = asteroid astro-sand
 tiles-wood-large = large wood
-
-tiles-abyss-floor = abyss floor
-tiles-abductor-floor = abductor floor

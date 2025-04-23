@@ -5,7 +5,6 @@ namespace Content.Shared.UserInterface;
 public sealed class IntrinsicUISystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
 
     public override void Initialize()
@@ -29,8 +28,6 @@ public sealed class IntrinsicUISystem : EntitySystem
         {
             var actionId = actionEntry.ToggleActionEntity;
             _actionsSystem.RemoveAction(uid, actionId);
-            if (actionId != null)
-                _actionContainer.RemoveAction(actionId.Value);
         }
     }
 

@@ -10,8 +10,6 @@
       organs:
         brain: OrganHumanBrain
         eyes: OrganHumanEyes
-        tongue: OrganHumanTongue
-        eye_implant: null
     torso:
       part: TorsoVox
       connections:
@@ -25,7 +23,6 @@
         stomach: OrganHumanStomach
         liver: OrganHumanLiver
         kidneys: OrganHumanKidneys
-        cavity: null
     right arm:
       part: RightArmVox
       connections:

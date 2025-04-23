@@ -66,15 +66,10 @@ namespace Content.Client.Stack
             if (!_appearanceSystem.TryGetData<bool>(uid, StackVisuals.Hide, out var hidden, args.Component))
                 hidden = false;
 
-            if(comp.LayerCountStates.Count > 0)
-                _counterSystem.ProcessOpaqueSpriteByTable(uid, comp.BaseLayer, actual, comp.LayerStates, comp.LayerCountStates, hidden, sprite: args.Sprite);
+            if (comp.IsComposite)
+                _counterSystem.ProcessCompositeSprite(uid, actual, maxCount, comp.LayerStates, hidden, sprite: args.Sprite);
             else
-            {
-                if (comp.IsComposite)
-                    _counterSystem.ProcessCompositeSprite(uid, actual, maxCount, comp.LayerStates, hidden, sprite: args.Sprite);
-                else
-                    _counterSystem.ProcessOpaqueSprite(uid, comp.BaseLayer, actual, maxCount, comp.LayerStates, hidden, sprite: args.Sprite);
-            }
+                _counterSystem.ProcessOpaqueSprite(uid, comp.BaseLayer, actual, maxCount, comp.LayerStates, hidden, sprite: args.Sprite);
         }
     }
 }

@@ -195,11 +195,6 @@
   - type: HideLayerClothing
     slots:
     - Hair
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - ClothMade
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingHeadBase

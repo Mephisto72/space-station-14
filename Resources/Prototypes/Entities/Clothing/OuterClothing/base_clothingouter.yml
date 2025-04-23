@@ -117,8 +117,6 @@
   - type: HeldSpeedModifier
   - type: Item
     size: Ginormous
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:

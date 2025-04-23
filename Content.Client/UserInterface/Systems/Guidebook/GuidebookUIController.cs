@@ -29,7 +29,7 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
     private const int PlaytimeOpenGuidebook = 60;
 
     private GuidebookWindow? _guideWindow;
-    private Controls.MenuButton? GuidebookButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.GuidebookButton;
+    private MenuButton? GuidebookButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.GuidebookButton;
     private ProtoId<GuideEntryPrototype>? _lastEntry;
 
     public void OnStateEntered(LobbyState state)

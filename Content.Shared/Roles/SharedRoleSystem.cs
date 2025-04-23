@@ -168,9 +168,11 @@ public abstract class SharedRoleSystem : EntitySystem
         var update = MindRolesUpdate((mindId, mind));
 
         // RoleType refresh, Role time tracking, Update Admin playerlist
-
-        var message = new RoleAddedEvent(mindId, mind, update, silent);
-        RaiseLocalEvent(mindId, message, true);
+        if (mind.OwnedEntity != null)
+        {
+            var message = new RoleAddedEvent(mindId, mind, update, silent);
+            RaiseLocalEvent(mind.OwnedEntity.Value, message, true);
+        }
 
         var name = Loc.GetString(protoEnt.Name);
         if (mind.OwnedEntity is not null)
@@ -211,30 +213,20 @@ public abstract class SharedRoleSystem : EntitySystem
         return true;
     }
 
-    /// <summary>
-    ///     Return the most recently specified role type, or Neutral
-    /// </summary>
     private ProtoId<RoleTypePrototype> GetRoleTypeByTime(MindComponent mind)
     {
-        var role = GetRoleCompByTime(mind);
-        return role?.Comp?.RoleType ?? "Neutral";
-    }
+        // If any Mind Roles specify a Role Type, return the most recent. Otherwise return Neutral
 
-    /// <summary>
-    ///     Return the most recently specified role type's mind role entity, or null
-    /// </summary>
-    public Entity<MindRoleComponent>? GetRoleCompByTime(MindComponent mind)
-    {
-        var roles = new List<Entity<MindRoleComponent>>();
+        var roles = new List<ProtoId<RoleTypePrototype>>();
 
         foreach (var role in mind.MindRoles)
         {
             var comp = Comp<MindRoleComponent>(role);
             if (comp.RoleType is not null)
-                roles.Add((role, comp));
+                roles.Add(comp.RoleType.Value);
         }
 
-        Entity<MindRoleComponent>? result = roles.Count > 0 ? roles.LastOrDefault() : null;
+        ProtoId<RoleTypePrototype> result = (roles.Count > 0) ? roles.LastOrDefault() : "Neutral";
         return (result);
     }
 
@@ -261,14 +253,14 @@ public abstract class SharedRoleSystem : EntitySystem
         else
         {
             var error = $"The Character Window of {_minds.MindOwnerLoggingString(comp)} potentially did not update immediately : session error";
-            _adminLogger.Add(LogType.Mind, LogImpact.Medium, $"{error}");
+            _adminLogger.Add(LogType.Mind, LogImpact.High, $"{error}");
         }
 
         if (comp.OwnedEntity is null)
         {
             Log.Error($"{ToPrettyString(mind)} does not have an OwnedEntity!");
             _adminLogger.Add(LogType.Mind,
-                LogImpact.Medium,
+                LogImpact.High,
                 $"Role Type of {ToPrettyString(mind)} changed to {roleTypeId}");
             return;
         }
@@ -319,8 +311,11 @@ public abstract class SharedRoleSystem : EntitySystem
 
         var update = MindRolesUpdate(mind);
 
-        var message = new RoleRemovedEvent(mind.Owner, mind.Comp, update);
-        RaiseLocalEvent(mind, message, true);
+        if (mind.Comp.OwnedEntity != null)
+        {
+            var message = new RoleRemovedEvent(mind.Owner, mind.Comp, update);
+            RaiseLocalEvent(mind.Comp.OwnedEntity.Value, message, true);
+        }
 
         _adminLogger.Add(LogType.Mind,
             LogImpact.Low,

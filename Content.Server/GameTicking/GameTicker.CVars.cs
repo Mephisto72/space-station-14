@@ -1,7 +1,6 @@
 using Content.Server.Discord;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
-using Content.Shared.Starlight;
 
 namespace Content.Server.GameTicking
 {
@@ -26,7 +25,6 @@ namespace Content.Server.GameTicking
         private string? DiscordRoundEndRole { get; set; }
 
         private WebhookIdentifier? _webhookIdentifier;
-
 
         [ViewVariables]
         private string? RoundEndSoundCollection { get; set; }
@@ -74,7 +72,6 @@ namespace Content.Server.GameTicking
                     DiscordRoundEndRole = null;
                 }
             }, true);
-            StarlightSubs(); //🌟Starlight🌟
             Subs.CVar(_cfg, CCVars.RoundEndSoundCollection, value => RoundEndSoundCollection = value, true);
 #if EXCEPTION_TOLERANCE
             Subs.CVar(_cfg, CCVars.RoundStartFailShutdownCount, value => RoundStartFailShutdownCount = value, true);

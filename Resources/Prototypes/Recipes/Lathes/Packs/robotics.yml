@@ -7,10 +7,6 @@
   - PositronicBrain
   - SciFlash
   - CyborgEndoskeleton
-  # Starlight-start
-  - MechAirTank 
-  - MechThruster
-  # Starlight-end
 
 - type: latheRecipePack
   id: BorgModulesStatic

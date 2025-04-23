@@ -30,8 +30,9 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
     protected override void Open()
     {
         base.Open();
-        _window = this.CreateWindowCenteredLeft<OfferingWindow>();
+        _window = this.CreateWindow<OfferingWindow>();
         _window.Title = Loc.GetString("salvage-expedition-window-title");
+        _window.OpenCenteredLeft();
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -55,8 +56,9 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
             var offering = new OfferingWindowOption();
             offering.Title = Loc.GetString($"salvage-expedition-type");
 
-            var difficultyId = missionParams.Difficulty;
+            var difficultyId = "Moderate";
             var difficultyProto = _protoManager.Index<SalvageDifficultyPrototype>(difficultyId);
+            // TODO: Selectable difficulty soon.
             var mission = salvage.GetMission(difficultyProto, missionParams.Seed);
 
             // Difficulty
@@ -70,7 +72,7 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
 
             offering.AddContent(new Label
             {
-                Text = difficultyId,
+                Text = Loc.GetString("salvage-expedition-difficulty-Moderate"),
                 FontColorOverride = difficultyColor,
                 HorizontalAlignment = Control.HAlignment.Left,
                 Margin = new Thickness(0f, 0f, 0f, 5f),
@@ -113,6 +115,7 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
                 Logger.Error($"Description is null or white space for SalvageFactionPrototype: {faction}");
                 return Loc.GetString(_protoManager.Index<SalvageFactionPrototype>(faction).ID);
             }
+
 
             // Duration
             offering.AddContent(new Label

@@ -1,6 +1,4 @@
-﻿using Content.Client._Starlight.Managers;
-using Content.Client.Administration.Managers;
-using Content.Client.Gameplay;
+﻿using Content.Client.Gameplay;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Client.UserInterface.Systems.Info;
@@ -21,7 +19,6 @@ namespace Content.Client.UserInterface.Systems.EscapeMenu;
 public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>
 {
     [Dependency] private readonly IClientConsoleHost _console = default!;
-    [Dependency] private readonly IClientPlayerRolesManager _player = default!;
     [Dependency] private readonly IUriOpener _uri = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly ChangelogUIController _changelog = default!;
@@ -31,7 +28,7 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
 
     private Options.UI.EscapeMenu? _escapeWindow;
 
-    private Controls.MenuButton? EscapeButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.EscapeButton;
+    private MenuButton? EscapeButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.EscapeButton;
 
     public void UnloadButton()
     {
@@ -65,12 +62,6 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
 
         _escapeWindow.OnClose += DeactivateButton;
         _escapeWindow.OnOpen += ActivateButton;
-
-        _escapeWindow.DiscordButton.OnPressed += _ =>
-        {
-            if(_player.GetDiscordLink() is string link)
-                _uri.OpenUri(link);
-        };
 
         _escapeWindow.ChangelogButton.OnPressed += _ =>
         {

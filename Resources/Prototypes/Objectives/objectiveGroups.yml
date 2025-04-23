@@ -58,15 +58,13 @@
 - type: weightedRandom
   id: ThiefObjectiveGroupCollection
   weights:
-    HeadCloakStealCollectionObjective: 1                #command
+    HeadCloakStealCollectionObjective: 1           #command
     HeadBedsheetStealCollectionObjective: 1
     StampStealCollectionObjective: 1
     DoorRemoteStealCollectionObjective: 1
-    TechnologyDiskStealCollectionObjective: 1           #sci
-    MailStealCollectionObjective: 1                     #cargo
-    FigurineStealCollectionObjective: 0.3          #service
+    TechnologyDiskStealCollectionObjective: 1        #rnd
     IDCardsStealCollectionObjective: 1
-    LAMPStealCollectionObjective: 2                     #only for moth
+    LAMPStealCollectionObjective: 2 #only for moth
 
 - type: weightedRandom
   id: ThiefObjectiveGroupItem
@@ -118,5 +116,4 @@
   id: ThiefObjectiveGroupEscape
   weights:
     EscapeThiefShuttleObjective: 1
-
-#Crew, wizard, when you code it...
+#Changeling, crew, wizard, when you code it...

@@ -78,11 +78,6 @@ namespace Content.Shared.Stacks
         [DataField("layerStates")]
         [ViewVariables(VVAccess.ReadWrite)]
         public List<string> LayerStates = new();
-
-        // Starlight
-        [DataField("layerCountStates")]
-        [ViewVariables(VVAccess.ReadWrite)]
-        public List<int> LayerCountStates = new();
     }
 
     [Serializable, NetSerializable]

@@ -1,5 +1,4 @@
 ﻿using Content.Shared.Interaction;
-using Content.Shared.Mech.Components;
 
 namespace Content.Shared.MouseRotator;
 
@@ -30,17 +29,9 @@ public abstract class SharedMouseRotatorSystem : EntitySystem
         {
             if (rotator.GoalRotation == null)
                 continue;
-            
-            var target = uid;
-            
-            if (TryComp<MechPilotComponent>(uid, out var mechPilot))
-            {
-                target = mechPilot.Mech;
-                xform = Transform(mechPilot.Mech);
-            }
 
             if (_rotate.TryRotateTo(
-                    target,
+                    uid,
                     rotator.GoalRotation.Value,
                     frameTime,
                     rotator.AngleTolerance,

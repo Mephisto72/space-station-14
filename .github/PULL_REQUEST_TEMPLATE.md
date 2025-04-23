@@ -1,31 +1,36 @@
-<!-- IT'S NOT WIZDENS REPO, IF YOU WANT TO ADD YOUR CHANGES ON ALL SERVERS, CREATE PR TO WIZDENS REPO -->
+<!-- Guidelines: https://docs.spacestation14.io/en/getting-started/pr-guideline -->
 
-## Short description
-<!-- What do you propose to change with your PR? -->
+## About the PR
+<!-- What did you change? -->
 
-## Why we need to add this
-<!-- What is the reason for adding these changes? Please post links to Discussions as well as Bug Reports here. Please describe how this will change the game balance. -->
+## Why / Balance
+<!-- Discuss how this would affect game balance or explain why it was changed. Link any relevant discussions or issues. -->
 
-## Media (Video/Screenshots)
-<!--
-If your PR contains in-game changes you must provide screenshots/videos of the changes.
--->
+## Technical details
+<!-- Summary of code changes for easier review. -->
 
-## Checks
-<!-- check boxes for faster reviewing of your PR -->
+## Media
+<!-- Attach media if the PR makes ingame changes (clothing, items, features, etc). 
+Small fixes/refactors are exempt. Media may be used in SS14 progress reports with credit. -->
 
-- [ ] I do not require assistance to complete the PR.
-- [ ] Before posting/requesting review of a PR, I have verified that the changes work.
-- [ ] I have added screenshots/videos of the changes, or this PR does not change in-game mechanics.
-- [ ] I affirm that my changes are licensed under the [Starlight Fork License](https://github.com/ss14Starlight/space-station-14/blob/Starlight/LICENSE-Starlight.TXT) and grant permission for use in this repository under its conditions.
+## Requirements
+<!-- Confirm the following by placing an X in the brackets [X]: -->
+- [ ] I have read and am following the [Pull Request and Changelog Guidelines](https://docs.spacestation14.com/en/general-development/codebase-info/pull-request-guidelines.html).
+- [ ] I have added media to this PR or it does not require an ingame showcase.
+<!-- You should understand that not following the above may get your PR closed at maintainer’s discretion -->
+
+## Breaking changes
+<!-- List any breaking changes, including namespaces, public class/method/field changes, prototype renames; and provide instructions for fixing them.
+This will be posted in #codebase-changes. -->
 
 **Changelog**
+<!-- Add a Changelog entry to make players aware of new features or changes that could affect gameplay.
+Make sure to read the guidelines and take this Changelog template out of the comment block in order for it to show up.
+Changelog must have a :cl: symbol, so the bot recognizes the changes and adds them to the game's changelog. -->
 <!--
-If you want the players to know about changes made in this PR, specify them using the template outside the comment. Short and informative.
-
-:cl: STARLIGHT TEAM
-- add: Added Starlight.
-- remove: Removed SS13.
-- tweak: Changed SS14.
-- fix: Fixed Rinary.
+:cl:
+- add: Added fun!
+- remove: Removed fun!
+- tweak: Changed fun!
+- fix: Fixed fun!
 -->

@@ -1,4 +1,3 @@
-/* STARLIGHT: Removed, frequent command abuse
 using Content.Server.GameTicking;
 using Content.Server.Popups;
 using Content.Shared.Administration;
@@ -59,4 +58,3 @@ namespace Content.Server.Chat.Commands
         }
     }
 }
-*/

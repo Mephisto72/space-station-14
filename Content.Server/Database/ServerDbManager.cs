@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using System.IO;
 using System.Net;
 using System.Text.Json;
@@ -203,13 +203,6 @@ namespace Content.Server.Database
             int serverId);
 
         Task AddServerBanHitsAsync(int connection, IEnumerable<ServerBanDef> bans);
-
-        #endregion
-
-        #region Player data
-        /// 🌟Starlight🌟
-        Task SetPlayerDataForAsync(NetUserId userId, PlayerDataDTO data, CancellationToken cancel = default);
-        Task<PlayerDataDTO?> GetPlayerDataForAsync(NetUserId userId, CancellationToken cancel = default);
 
         #endregion
 
@@ -662,19 +655,6 @@ namespace Content.Server.Database
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.AddServerBanHitsAsync(connection, bans));
         }
-        //🌟Starlight🌟 start
-        public Task<PlayerDataDTO?> GetPlayerDataForAsync(NetUserId userId, CancellationToken cancel = default)
-        {
-            DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.GetPlayerDataDTOForAsync(userId, cancel));
-        }
-        public Task SetPlayerDataForAsync(NetUserId userId, PlayerDataDTO data, CancellationToken cancel = default)
-        {
-            DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.SetPlayerDataForAsync(userId, data, cancel));
-        }
-
-        //🌟Starlight🌟 end
 
         public Task<Admin?> GetAdminDataForAsync(NetUserId userId, CancellationToken cancel = default)
         {

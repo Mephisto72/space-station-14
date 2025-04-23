@@ -178,7 +178,6 @@
        - id: ClothingUniformJumpskirtCargo
        - id: ClothingHandsGlovesFingerless
        - id: AppraisalTool
-       - id: WeaponMeleeBoxcutter
 
  - type: entity
    id: WardrobeSalvageFilled
