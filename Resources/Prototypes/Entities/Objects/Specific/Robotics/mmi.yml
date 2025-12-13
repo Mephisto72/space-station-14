@@ -24,9 +24,6 @@
   - type: BlockMovement
   - type: Examiner
   - type: IntrinsicRadioReceiver
-  - type: IntrinsicRadioTransmitter
-    channels:
-    - Binary
   - type: ActiveRadio
     channels:
     - Binary
@@ -98,9 +95,6 @@
     - type: Examiner
     - type: BorgBrain
     - type: IntrinsicRadioReceiver
-    - type: IntrinsicRadioTransmitter
-      channels:
-      - Binary
     - type: ActiveRadio
       channels:
       - Binary
